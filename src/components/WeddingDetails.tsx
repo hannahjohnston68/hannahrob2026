@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, MapPin, Utensils, BedDouble, Gift } from 'lucide-react';
@@ -18,10 +17,10 @@ const DetailCard: React.FC<DetailCardProps> = ({ icon, title, children, delay = 
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay }}
       viewport={{ once: true, margin: "-100px" }}
-      className="glass-card p-6 rounded-lg shadow-md h-full bg-white/70 border border-wedding-taupe/20"
+      className="glass-card p-6 rounded-lg shadow-md h-full"
     >
       <div className="flex flex-col items-center text-center">
-        <div className="w-14 h-14 bg-wedding-blush/30 rounded-full flex items-center justify-center mb-4 shadow-inner">
+        <div className="w-14 h-14 bg-wedding-champagne rounded-full flex items-center justify-center mb-4 shadow-inner">
           <div className="text-wedding-gold">{icon}</div>
         </div>
         <h3 className="text-xl font-serif mb-3">{title}</h3>

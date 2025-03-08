@@ -27,7 +27,7 @@ const timelineEvents = [{
 
 const OurStory: React.FC = () => {
   return (
-    <section className="py-20 px-4 bg-wedding-champagne/40">
+    <section className="py-20 px-4 bg-wedding-blush/20">
       <div className="max-w-6xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
