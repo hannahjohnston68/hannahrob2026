@@ -26,13 +26,13 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				wedding: {
-					cream: '#F9F6F0',
-					blush: '#D3E4FD',  // Changed to soft blue
-					sage: '#D4DDCF',
-					champagne: '#F2FCE2', // Changed to soft green
-					taupe: '#B8D0EB',  // Changed to a muted blue
-					gold: '#6BA292',   // Changed to a sage green
-					charcoal: '#36454F'
+					cream: '#F6F1E4',        // Base cream background
+					blush: '#E8B5C1',        // Soft pink
+					sage: '#8BAE80',         // Soft green
+					champagne: '#F3E8C8',    // Light yellow/cream
+					taupe: '#A6BDD0',        // Soft blue
+					gold: '#D48379',         // Coral/pink accent
+					charcoal: '#4A4A4A'      // Dark text color
 				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',

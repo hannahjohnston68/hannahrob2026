@@ -4,7 +4,7 @@ import { Heart } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-wedding-cream border-t border-wedding-taupe/20 py-10">
+    <footer className="bg-wedding-cream border-t border-wedding-blush/20 py-10">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center justify-center">
           <h3 className="font-serif text-2xl mb-2">Sophie & James</h3>
