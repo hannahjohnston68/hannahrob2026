@@ -22,47 +22,65 @@ const HeroSection: React.FC = () => {
     return () => window.removeEventListener('scroll', handleParallax);
   }, []);
 
-  return <div ref={sectionRef} className="relative h-screen w-full bg-cover bg-center flex items-center justify-center overflow-hidden" style={{
-    backgroundImage: "url(https://images.unsplash.com/photo-1566843577946-ca3089b9a6ca?w=1500&q=80)",
-    backgroundAttachment: "fixed"
-  }}>
+  return (
+    <div 
+      ref={sectionRef} 
+      className="relative h-screen w-full bg-cover bg-center flex items-center justify-center overflow-hidden" 
+      style={{
+        backgroundImage: "url('https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?w=1500&q=80')",
+        backgroundAttachment: "fixed"
+      }}
+    >
       <div className="absolute inset-0 bg-black/10" />
 
-      <motion.div initial={{
-      opacity: 0,
-      scale: 0.9
-    }} animate={{
-      opacity: 1,
-      scale: 1
-    }} transition={{
-      duration: 1.2,
-      ease: "easeOut"
-    }} className={cn("relative z-10 text-center px-4 py-16 max-w-3xl mx-auto", "glass-card rounded-lg bg-white/70 shadow-xl backdrop-blur-sm")}>
-        <motion.div initial={{
-        opacity: 0,
-        y: 20
-      }} animate={{
-        opacity: 1,
-        y: 0
-      }} transition={{
-        delay: 0.3,
-        duration: 0.8
-      }}>
+      <motion.div 
+        initial={{
+          opacity: 0,
+          scale: 0.9
+        }} 
+        animate={{
+          opacity: 1,
+          scale: 1
+        }} 
+        transition={{
+          duration: 1.2,
+          ease: "easeOut"
+        }} 
+        className={cn("relative z-10 text-center px-4 py-16 max-w-3xl mx-auto", "glass-card rounded-lg bg-white/70 shadow-xl backdrop-blur-sm")}
+      >
+        <motion.div 
+          initial={{
+            opacity: 0,
+            y: 20
+          }} 
+          animate={{
+            opacity: 1,
+            y: 0
+          }} 
+          transition={{
+            delay: 0.3,
+            duration: 0.8
+          }}
+        >
           <p className="font-body uppercase tracking-[0.3em] text-sm mb-4 text-wedding-charcoal/80">We're Getting Married</p>
           <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl mb-6 text-wedding-charcoal leading-tight">
-            Sophie <span className="font-normal text-green-700">&</span> James
+            Sophie <span className="font-normal text-wedding-moss">&</span> James
           </h1>
           <p className="font-body uppercase tracking-[0.15em] text-lg mb-8 text-wedding-charcoal">SEPTEMBER 12, 2026 • ARCHEO • TORONTO, ONTARIO</p>
-          <div className="h-px w-24 bg-green-700 mx-auto mb-8" />
-          <motion.div initial={{
-          opacity: 0
-        }} animate={{
-          opacity: 1
-        }} transition={{
-          delay: 1,
-          duration: 1
-        }}>
-            <a href="/rsvp" className="inline-block px-8 py-3 border border-green-700 text-green-700 hover:bg-green-700 hover:text-white transition-colors duration-300 uppercase tracking-widest text-sm font-body">
+          <div className="h-px w-24 bg-wedding-moss mx-auto mb-8" />
+          <motion.div 
+            initial={{
+              opacity: 0
+            }} 
+            animate={{
+              opacity: 1
+            }} 
+            transition={{
+              delay: 1,
+              duration: 1
+            }}
+          >
+            <a href="/rsvp" className="inline-block px-8 py-3 border border-wedding-moss text-wedding-moss hover:bg-wedding-moss hover:text-white transition-colors duration-300 uppercase tracking-widest text-sm font-body">
               RSVP Now
             </a>
           </motion.div>
@@ -74,7 +92,8 @@ const HeroSection: React.FC = () => {
           <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
         </svg>
       </div>
-    </div>;
+    </div>
+  );
 };
 
 export default HeroSection;
