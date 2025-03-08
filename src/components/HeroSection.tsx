@@ -1,9 +1,12 @@
+
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import ImageWithLoader from './ImageWithLoader';
+
 const HeroSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const handleParallax = () => {
       if (!sectionRef.current) return;
@@ -14,14 +17,16 @@ const HeroSection: React.FC = () => {
         sectionRef.current.style.backgroundPositionY = `calc(50% + ${offset}px)`;
       }
     };
+
     window.addEventListener('scroll', handleParallax);
     return () => window.removeEventListener('scroll', handleParallax);
   }, []);
+
   return <div ref={sectionRef} className="relative h-screen w-full bg-cover bg-center flex items-center justify-center overflow-hidden" style={{
-    backgroundImage: "url(https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=1500&q=80)",
+    backgroundImage: "url(https://images.unsplash.com/photo-1566843577946-ca3089b9a6ca?w=1500&q=80)",
     backgroundAttachment: "fixed"
   }}>
-      <div className="absolute inset-0 bg-black/20" />
+      <div className="absolute inset-0 bg-black/10" />
 
       <motion.div initial={{
       opacity: 0,
@@ -32,7 +37,7 @@ const HeroSection: React.FC = () => {
     }} transition={{
       duration: 1.2,
       ease: "easeOut"
-    }} className={cn("relative z-10 text-center px-4 py-16 max-w-3xl mx-auto", "glass-card rounded-lg bg-white/60 shadow-xl backdrop-blur-sm")}>
+    }} className={cn("relative z-10 text-center px-4 py-16 max-w-3xl mx-auto", "glass-card rounded-lg bg-white/70 shadow-xl backdrop-blur-sm")}>
         <motion.div initial={{
         opacity: 0,
         y: 20
@@ -45,10 +50,10 @@ const HeroSection: React.FC = () => {
       }}>
           <p className="font-body uppercase tracking-[0.3em] text-sm mb-4 text-wedding-charcoal/80">We're Getting Married</p>
           <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl mb-6 text-wedding-charcoal leading-tight">
-            Sophie <span className="font-normal text-wedding-gold">&</span> James
+            Sophie <span className="font-normal text-green-700">&</span> James
           </h1>
           <p className="font-body uppercase tracking-[0.15em] text-lg mb-8 text-wedding-charcoal">SEPTEMBER 12, 2026 • ARCHEO • TORONTO, ONTARIO</p>
-          <div className="h-px w-24 bg-wedding-gold mx-auto mb-8" />
+          <div className="h-px w-24 bg-green-700 mx-auto mb-8" />
           <motion.div initial={{
           opacity: 0
         }} animate={{
@@ -57,7 +62,7 @@ const HeroSection: React.FC = () => {
           delay: 1,
           duration: 1
         }}>
-            <a href="/rsvp" className="inline-block px-8 py-3 border border-wedding-gold text-wedding-gold hover:bg-wedding-gold hover:text-white transition-colors duration-300 uppercase tracking-widest text-sm font-body">
+            <a href="/rsvp" className="inline-block px-8 py-3 border border-green-700 text-green-700 hover:bg-green-700 hover:text-white transition-colors duration-300 uppercase tracking-widest text-sm font-body">
               RSVP Now
             </a>
           </motion.div>
@@ -71,4 +76,5 @@ const HeroSection: React.FC = () => {
       </div>
     </div>;
 };
+
 export default HeroSection;

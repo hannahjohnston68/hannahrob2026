@@ -26,12 +26,12 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				wedding: {
-					cream: '#F9F6F0',
-					blush: '#F8E2E2',
-					sage: '#D4DDCF',
-					champagne: '#F7E7CE',
-					taupe: '#BEB0A7',
-					gold: '#D4B98C',
+					cream: '#F7F4EF',
+					blush: '#F6E3E3',
+					sage: '#B8C4BB',
+					lavender: '#E7E5F6',
+					dustyrose: '#D8B4B1',
+					moss: '#5B7744',
 					charcoal: '#36454F'
 				},
 				primary: {
