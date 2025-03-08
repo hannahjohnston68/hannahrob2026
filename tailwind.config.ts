@@ -27,11 +27,11 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				wedding: {
 					cream: '#F9F6F0',
-					blush: '#F8E2E2',
+					blush: '#D3E4FD',  // Changed to soft blue
 					sage: '#D4DDCF',
-					champagne: '#F7E7CE',
-					taupe: '#BEB0A7',
-					gold: '#D4B98C',
+					champagne: '#F2FCE2', // Changed to soft green
+					taupe: '#B8D0EB',  // Changed to a muted blue
+					gold: '#6BA292',   // Changed to a sage green
 					charcoal: '#36454F'
 				},
 				primary: {

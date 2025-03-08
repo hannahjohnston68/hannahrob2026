@@ -1,9 +1,12 @@
+
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import ImageWithLoader from './ImageWithLoader';
+
 const HeroSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const handleParallax = () => {
       if (!sectionRef.current) return;
@@ -14,11 +17,13 @@ const HeroSection: React.FC = () => {
         sectionRef.current.style.backgroundPositionY = `calc(50% + ${offset}px)`;
       }
     };
+
     window.addEventListener('scroll', handleParallax);
     return () => window.removeEventListener('scroll', handleParallax);
   }, []);
+
   return <div ref={sectionRef} className="relative h-screen w-full bg-cover bg-center flex items-center justify-center overflow-hidden" style={{
-    backgroundImage: "url(https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=1500&q=80)",
+    backgroundImage: "url(https://images.unsplash.com/photo-1466781783364-36c955e42a7f?w=1500&q=80)",
     backgroundAttachment: "fixed"
   }}>
       <div className="absolute inset-0 bg-black/20" />
@@ -71,4 +76,5 @@ const HeroSection: React.FC = () => {
       </div>
     </div>;
 };
+
 export default HeroSection;
