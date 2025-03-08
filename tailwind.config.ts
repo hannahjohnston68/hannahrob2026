@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -24,6 +25,15 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				wedding: {
+					cream: '#F9F6F0',
+					blush: '#F8E2E2',
+					sage: '#D4DDCF',
+					champagne: '#F7E7CE',
+					taupe: '#BEB0A7',
+					gold: '#D4B98C',
+					charcoal: '#36454F'
+				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
@@ -63,6 +73,11 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				}
 			},
+			fontFamily: {
+				serif: ['Playfair Display', 'serif'],
+				sans: ['Cormorant Garamond', 'sans-serif'],
+				body: ['Montserrat', 'sans-serif']
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
@@ -84,11 +99,55 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(10px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'fade-in-right': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateX(-20px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateX(0)'
+					}
+				},
+				'fade-in-left': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateX(20px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateX(0)'
+					}
+				},
+				'image-glow': {
+					'0%': {
+						opacity: '0',
+						'backdrop-filter': 'blur(8px)'
+					},
+					'100%': {
+						opacity: '1',
+						'backdrop-filter': 'blur(0px)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.7s ease-out',
+				'fade-in-right': 'fade-in-right 0.7s ease-out',
+				'fade-in-left': 'fade-in-left 0.7s ease-out',
+				'image-glow': 'image-glow 0.6s ease-out'
 			}
 		}
 	},
