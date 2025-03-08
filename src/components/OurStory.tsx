@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import Timeline from './Timeline';
-
 const timelineEvents = [{
   date: "June 2018",
   title: "How We Met",
@@ -24,29 +22,7 @@ const timelineEvents = [{
   description: "During a sunrise hike at Mount Hood, James got down on one knee at the perfect lookout point. Sophie was completely surprised and, of course, said yes!",
   image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=800&q=80"
 }];
-
 const OurStory: React.FC = () => {
-  return (
-    <section className="py-20 px-4 bg-wedding-blush/20">
-      <div className="max-w-6xl mx-auto">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-16"
-        >
-          <h2 className="font-serif text-3xl md:text-4xl mb-4">Our Love Story</h2>
-          <div className="h-px w-20 bg-wedding-gold mx-auto mb-6"></div>
-          <p className="max-w-2xl mx-auto text-wedding-charcoal/80">
-            Every love story is beautiful, but ours is our favorite. Here's how our journey together unfolded.
-          </p>
-        </motion.div>
-        
-        <Timeline events={timelineEvents} />
-      </div>
-    </section>
-  );
+  return;
 };
-
 export default OurStory;

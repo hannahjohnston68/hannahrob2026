@@ -2,23 +2,31 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, MapPin, Utensils, BedDouble, Gift } from 'lucide-react';
 import { cn } from '@/lib/utils';
-
 interface DetailCardProps {
   icon: React.ReactNode;
   title: string;
   children: React.ReactNode;
   delay?: number;
 }
-
-const DetailCard: React.FC<DetailCardProps> = ({ icon, title, children, delay = 0 }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay }}
-      viewport={{ once: true, margin: "-100px" }}
-      className="glass-card p-6 rounded-lg shadow-md h-full"
-    >
+const DetailCard: React.FC<DetailCardProps> = ({
+  icon,
+  title,
+  children,
+  delay = 0
+}) => {
+  return <motion.div initial={{
+    opacity: 0,
+    y: 20
+  }} whileInView={{
+    opacity: 1,
+    y: 0
+  }} transition={{
+    duration: 0.6,
+    delay
+  }} viewport={{
+    once: true,
+    margin: "-100px"
+  }} className="glass-card p-6 rounded-lg shadow-md h-full">
       <div className="flex flex-col items-center text-center">
         <div className="w-14 h-14 bg-wedding-champagne rounded-full flex items-center justify-center mb-4 shadow-inner">
           <div className="text-wedding-gold">{icon}</div>
@@ -26,21 +34,23 @@ const DetailCard: React.FC<DetailCardProps> = ({ icon, title, children, delay = 
         <h3 className="text-xl font-serif mb-3">{title}</h3>
         <div className="text-wedding-charcoal/80 font-body">{children}</div>
       </div>
-    </motion.div>
-  );
+    </motion.div>;
 };
-
 const WeddingDetails: React.FC = () => {
-  return (
-    <section className="py-20 px-4 bg-wedding-taupe/20">
+  return <section className="py-20 px-4 bg-wedding-taupe/20">
       <div className="max-w-6xl mx-auto">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-16"
-        >
+        <motion.div initial={{
+        opacity: 0,
+        y: 20
+      }} whileInView={{
+        opacity: 1,
+        y: 0
+      }} transition={{
+        duration: 0.8
+      }} viewport={{
+        once: true,
+        margin: "-100px"
+      }} className="text-center mb-16">
           <h2 className="font-serif text-3xl md:text-4xl mb-4">Wedding Details</h2>
           <div className="h-px w-20 bg-wedding-gold mx-auto mb-6"></div>
           <p className="max-w-2xl mx-auto text-wedding-charcoal/80">
@@ -50,8 +60,8 @@ const WeddingDetails: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <DetailCard icon={<Calendar size={26} />} title="Date" delay={0.1}>
-            <p className="mb-2">Saturday, September 24, 2024</p>
-            <p>Please save the date and join us for a weekend celebration!</p>
+            <p className="mb-2">Saturday, September 12, 2026</p>
+            <p>Please save the date and join us for the celebration!</p>
           </DetailCard>
 
           <DetailCard icon={<Clock size={26} />} title="Schedule" delay={0.2}>
@@ -64,12 +74,7 @@ const WeddingDetails: React.FC = () => {
             <p className="mb-2">Oakwood Estate</p>
             <p className="mb-2">123 Forest Lane</p>
             <p>Portland, Oregon 97205</p>
-            <a 
-              href="https://maps.google.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block mt-3 text-wedding-gold hover:underline"
-            >
+            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="block mt-3 text-wedding-gold hover:underline">
               View Map
             </a>
           </DetailCard>
@@ -82,10 +87,7 @@ const WeddingDetails: React.FC = () => {
           <DetailCard icon={<BedDouble size={26} />} title="Accommodations" delay={0.5}>
             <p className="mb-2">We've reserved a block of rooms at The Portland Grand Hotel at a special rate.</p>
             <p>Use code "SOPHIE&JAMES" when booking.</p>
-            <a 
-              href="#" 
-              className="block mt-3 text-wedding-gold hover:underline"
-            >
+            <a href="#" className="block mt-3 text-wedding-gold hover:underline">
               Book Hotel
             </a>
           </DetailCard>
@@ -99,8 +101,6 @@ const WeddingDetails: React.FC = () => {
           </DetailCard>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default WeddingDetails;
