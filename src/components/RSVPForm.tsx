@@ -40,6 +40,7 @@ type FormValues = z.infer<typeof formSchema>;
 
 const RSVPForm: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -57,16 +58,35 @@ const RSVPForm: React.FC = () => {
   const { watch } = form;
   const attending = watch("attending");
 
-  const onSubmit = (data: FormValues) => {
-    console.log("Form submitted:", data);
+  const onSubmit = async (data: FormValues) => {
+    setIsSubmitting(true);
     
-    // Simulate form submission delay
-    setTimeout(() => {
-      setIsSubmitted(true);
-      toast.success("Thank you for your RSVP!", {
-        description: "We've received your response and can't wait to celebrate with you!",
+    try {
+      // Send form data to Formspree
+      const response = await fetch("https://formspree.io/f/mvgkpdzr", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       });
-    }, 1000);
+      
+      if (response.ok) {
+        setIsSubmitted(true);
+        toast.success("Thank you for your RSVP!", {
+          description: "We've received your response and can't wait to celebrate with you!",
+        });
+      } else {
+        throw new Error("Failed to submit form");
+      }
+    } catch (error) {
+      toast.error("Something went wrong", {
+        description: "We couldn't submit your RSVP. Please try again later.",
+      });
+      console.error("RSVP submission error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
@@ -256,8 +276,9 @@ const RSVPForm: React.FC = () => {
           <Button 
             type="submit" 
             className="w-full bg-wedding-gold hover:bg-wedding-gold/80 text-white border-none"
+            disabled={isSubmitting}
           >
-            Submit RSVP
+            {isSubmitting ? "Submitting..." : "Submit RSVP"}
           </Button>
         </form>
       </Form>
