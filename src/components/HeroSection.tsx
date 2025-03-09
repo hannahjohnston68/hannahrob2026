@@ -50,7 +50,7 @@ const HeroSection: React.FC = () => {
       }}>
           <p className="font-body uppercase tracking-[0.3em] text-sm mb-4 text-wedding-charcoal/80">We're Getting Married</p>
           <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl mb-6 text-wedding-charcoal leading-tight">
-            Sophie <span className="font-normal text-wedding-gold">&</span> James
+            Hannah <span className="font-normal text-wedding-gold">&</span> Rob
           </h1>
           <p className="font-body uppercase tracking-[0.15em] text-lg mb-8 text-wedding-charcoal">SEPTEMBER 12, 2026 • Toronto, Ontario</p>
           <div className="h-px w-24 bg-wedding-gold mx-auto mb-8" />
