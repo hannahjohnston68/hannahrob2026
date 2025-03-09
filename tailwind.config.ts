@@ -27,12 +27,17 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				wedding: {
 					cream: '#F9F6F0',
-					blush: '#D3E4FD',  // Changed to soft blue
-					sage: '#D4DDCF',
-					champagne: '#F2FCE2', // Changed to soft green
-					taupe: '#B8D0EB',  // Changed to a muted blue
-					gold: '#6BA292',   // Changed to a sage green
-					charcoal: '#36454F'
+					blush: '#FFD9E3',  // Soft pink like the flowers
+					sage: '#7D9F78',   // Deeper sage green from the foliage
+					champagne: '#FAF2D9', // Warm cream from garden tones
+					taupe: '#9A8F84',  // Earthy brown tone
+					gold: '#ECBC63',   // Golden yellow like flowers
+					charcoal: '#36454F',
+					pink: '#E3ADAA',    // Muted pink like the flowers
+					lavender: '#C8B7D5', // Soft purple like the flowers
+					moss: '#A5B592',    // Muted green
+					leaf: '#4A6741',    // Deep green like leaves
+					sky: '#A8C5DD',     // Soft blue like the sky
 				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
