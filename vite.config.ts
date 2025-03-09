@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/hannahrob2026/", // <-- This tells GitHub Pages where to find assets
+  base: "/hannahrob2026/",  // ✅ Ensure assets load correctly on GitHub Pages
   server: {
     host: "::",
     port: 8080,
@@ -14,6 +14,9 @@ export default defineConfig(({ mode }) => ({
     react(),
     mode === "development" && componentTagger(),
   ].filter(Boolean),
+  build: {
+    sourcemap: false,  // ✅ Disable source maps to prevent Chrome debugging errors
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
