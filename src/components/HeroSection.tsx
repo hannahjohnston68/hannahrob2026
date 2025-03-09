@@ -23,10 +23,10 @@ const HeroSection: React.FC = () => {
   }, []);
 
   return <div ref={sectionRef} className="relative h-screen w-full bg-cover bg-center flex items-center justify-center overflow-hidden" style={{
-    backgroundImage: "url('/lovable-uploads/7805333f-3650-4b5c-9e17-d1abaecd6e40.png')",
+    backgroundImage: "url(https://images.unsplash.com/photo-1466781783364-36c955e42a7f?w=1500&q=80)",
     backgroundAttachment: "fixed"
   }}>
-      <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-black/20" />
 
       <motion.div initial={{
       opacity: 0,
@@ -37,7 +37,7 @@ const HeroSection: React.FC = () => {
     }} transition={{
       duration: 1.2,
       ease: "easeOut"
-    }} className={cn("relative z-10 text-center px-4 py-16 max-w-3xl mx-auto", "glass-card rounded-lg bg-white/70 shadow-xl backdrop-blur-sm border border-white/30")}>
+    }} className={cn("relative z-10 text-center px-4 py-16 max-w-3xl mx-auto", "glass-card rounded-lg bg-white/60 shadow-xl backdrop-blur-sm")}>
         <motion.div initial={{
         opacity: 0,
         y: 20
@@ -50,10 +50,10 @@ const HeroSection: React.FC = () => {
       }}>
           <p className="font-body uppercase tracking-[0.3em] text-sm mb-4 text-wedding-charcoal/80">We're Getting Married</p>
           <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl mb-6 text-wedding-charcoal leading-tight">
-            Sophie <span className="font-normal text-wedding-sage">&</span> James
+            Sophie <span className="font-normal text-wedding-gold">&</span> James
           </h1>
           <p className="font-body uppercase tracking-[0.15em] text-lg mb-8 text-wedding-charcoal">SEPTEMBER 12, 2026 • Toronto, Ontario</p>
-          <div className="h-px w-24 bg-wedding-sage mx-auto mb-8" />
+          <div className="h-px w-24 bg-wedding-gold mx-auto mb-8" />
           <motion.div initial={{
           opacity: 0
         }} animate={{
@@ -62,7 +62,7 @@ const HeroSection: React.FC = () => {
           delay: 1,
           duration: 1
         }}>
-            <a href="/rsvp" className="inline-block px-8 py-3 border border-wedding-sage bg-wedding-sage/10 text-wedding-leaf hover:bg-wedding-sage hover:text-white transition-colors duration-300 uppercase tracking-widest text-sm font-body">
+            <a href="/rsvp" className="inline-block px-8 py-3 border border-wedding-gold text-wedding-gold hover:bg-wedding-gold hover:text-white transition-colors duration-300 uppercase tracking-widest text-sm font-body">
               RSVP Now
             </a>
           </motion.div>
