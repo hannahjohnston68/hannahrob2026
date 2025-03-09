@@ -1,13 +1,16 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Clock, MapPin, Utensils, BedDouble, Gift } from 'lucide-react';
+import { Calendar, Clock, MapPin, Gift } from 'lucide-react';
 import { cn } from '@/lib/utils';
+
 interface DetailCardProps {
   icon: React.ReactNode;
   title: string;
   children: React.ReactNode;
   delay?: number;
 }
+
 const DetailCard: React.FC<DetailCardProps> = ({
   icon,
   title,
@@ -36,6 +39,7 @@ const DetailCard: React.FC<DetailCardProps> = ({
       </div>
     </motion.div>;
 };
+
 const WeddingDetails: React.FC = () => {
   return <section className="py-20 px-4 bg-wedding-taupe/20">
       <div className="max-w-6xl mx-auto">
@@ -58,19 +62,15 @@ const WeddingDetails: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <DetailCard icon={<Calendar size={26} />} title="Date" delay={0.1}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <DetailCard icon={<Calendar size={26} />} title="Date & Schedule" delay={0.1}>
             <p className="mb-2">Saturday, September 12, 2026</p>
-            <p>Please save the date and join us for the celebration!</p>
-          </DetailCard>
-
-          <DetailCard icon={<Clock size={26} />} title="Schedule" delay={0.2}>
             <p className="mb-2">Ceremony: 3:00 PM</p>
             <p className="mb-2">Cocktail Hour: 4:00 PM</p>
             <p>Reception: 5:00 PM - 11:00 PM</p>
           </DetailCard>
 
-          <DetailCard icon={<MapPin size={26} />} title="Venue" delay={0.3}>
+          <DetailCard icon={<MapPin size={26} />} title="Venue" delay={0.2}>
             <p className="mb-2">Oakwood Estate</p>
             <p className="mb-2">123 Forest Lane</p>
             <p>Portland, Oregon 97205</p>
@@ -79,20 +79,15 @@ const WeddingDetails: React.FC = () => {
             </a>
           </DetailCard>
 
-          <DetailCard icon={<Utensils size={26} />} title="Menu" delay={0.4}>
-            <p className="mb-2">We'll be serving a seasonal farm-to-table menu with options for all dietary preferences.</p>
-            <p>Please indicate any dietary restrictions in your RSVP.</p>
-          </DetailCard>
-
-          <DetailCard icon={<BedDouble size={26} />} title="Accommodations" delay={0.5}>
+          <DetailCard icon={<Clock size={26} />} title="Accommodations" delay={0.3}>
             <p className="mb-2">We've reserved a block of rooms at The Portland Grand Hotel at a special rate.</p>
-            <p>Use code "SOPHIE&JAMES" when booking.</p>
+            <p>Use code "HANNAH&ROB" when booking.</p>
             <a href="#" className="block mt-3 text-wedding-gold hover:underline">
               Book Hotel
             </a>
           </DetailCard>
 
-          <DetailCard icon={<Gift size={26} />} title="Registry" delay={0.6}>
+          <DetailCard icon={<Gift size={26} />} title="Registry" delay={0.4}>
             <p>Your presence is the greatest gift of all, but if you wish to help us celebrate with a gift, we've registered at:</p>
             <div className="flex flex-col space-y-2 mt-3">
               <a href="#" className="text-wedding-gold hover:underline">Crate & Barrel</a>
@@ -103,4 +98,5 @@ const WeddingDetails: React.FC = () => {
       </div>
     </section>;
 };
+
 export default WeddingDetails;
