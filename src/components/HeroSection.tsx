@@ -23,10 +23,10 @@ const HeroSection: React.FC = () => {
   }, []);
 
   return <div ref={sectionRef} className="relative h-screen w-full bg-cover bg-center flex items-center justify-center overflow-hidden" style={{
-    backgroundImage: "url(https://images.unsplash.com/photo-1598902108854-0e31d6398558?q=80&w=1500)",
+    backgroundImage: "url(https://images.unsplash.com/photo-1466781783364-36c955e42a7f?w=1500&q=80)",
     backgroundAttachment: "fixed"
   }}>
-      <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-black/20" />
 
       <motion.div initial={{
       opacity: 0,
@@ -37,7 +37,7 @@ const HeroSection: React.FC = () => {
     }} transition={{
       duration: 1.2,
       ease: "easeOut"
-    }} className={cn("relative z-10 text-center px-4 py-16 max-w-3xl mx-auto", "glass-card rounded-lg bg-white/70 shadow-xl backdrop-blur-sm")}>
+    }} className={cn("relative z-10 text-center px-4 py-16 max-w-3xl mx-auto", "glass-card rounded-lg bg-white/60 shadow-xl backdrop-blur-sm")}>
         <motion.div initial={{
         opacity: 0,
         y: 20
