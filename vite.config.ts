@@ -1,20 +1,12 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
-import path from "path";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  base: "/hannahrob2026/",
+  base: "./", // Use relative paths to fix GitHub Pages 404 errors
   plugins: [react()],
   build: {
-    sourcemap: false,
-    outDir: "dist",
     rollupOptions: {
-      input: "src/index.tsx", // ✅ Ensures the correct entry point
-    },
-  },
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+      input: "index.html", // Ensure correct entry point
     },
   },
 });

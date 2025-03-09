@@ -1,9 +1,12 @@
-import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
 
-createRoot(document.getElementById("root")!).render(<App />);
-const rootElement = document.getElementById("root");
-if (!rootElement) {
-  throw new Error("Root element not found. Make sure index.html has <div id='root'></div>");
-}
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <BrowserRouter basename="/hannahrob2026"> {/* Add basename */}
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
+);
