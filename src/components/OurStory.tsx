@@ -5,28 +5,32 @@ import Timeline from './Timeline';
 
 const timelineEvents = [
   {
-    date: "June 2018",
-    title: "How We Met",
-    description: "We met at a friend's summer barbecue in Portland. Rob spilled his drink on Hannah's shoes, and somehow that led to exchanging numbers.",
-    image: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&q=80"
-  },
-  {
-    date: "December 2018",
+    date: "September 2018",
     title: "First Date",
-    description: "Our first official date was at a small Italian restaurant downtown. Hannah was 15 minutes late, but Rob didn't mind waiting.",
-    image: "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&q=80"
+    description: "We had our first date at Sneaky Dee's on College Street and split a plate of nachos.",
+    image: "/hannahrob2026/images/gallery/IMG_3478.JPG",  // Path will be correct after setup-gallery.sh runs
+    caption: "Not our first date, but our first photo together! This is us after 4 months of dating on Rob's 23rd birthday. That's Hannah's little brother looking cheerful on the right..."
   },
   {
-    date: "February 2020",
+    date: "October 2021",
     title: "Moving In Together",
-    description: "After a year and a half of dating, we decided to take the next step and move into our first apartment together in the Pearl District.",
-    image: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80"
+    description: "After three years of dating, we decided to take the next step and move into our an apartment together at Yonge & Eglinton.",
+    image: "/hannahrob2026/images/gallery/IMG_0265.JPG",  // Path will be correct after setup-gallery.sh runs
+    caption: "Here we are dressed up in our living room headed out to Hannah's grandmother's birthday party"
   },
   {
-    date: "October 2023",
+    date: "September 2023",
     title: "The Proposal",
-    description: "During a sunrise hike at Mount Hood, Rob got down on one knee at the perfect lookout point. Hannah was completely surprised and, of course, said yes!",
-    image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=800&q=80"
+    description: "During a walk on our 5 year anniversary, Rob got down on one knee and proposed. Hannah was completely surprised and, of course, said yes!",
+    image: "/hannahrob2026/images/gallery/IMG_4516.JPG",
+    caption: "Rob surprised Hannah when a bunch of our friends popped out of the bushes to celebrate the engagement. He proposed in Alexander Muir Memorial Garden in North York."
+  },
+  {
+    date: "November 2023",
+    title: "Adopted A Dog",
+    description: "Two months after getting engaged, we adopted a puppy: Boji!",
+    image: "/hannahrob2026/images/gallery/IMG_3817.jpg",
+    caption: "Note: not the same beagle as in the photo above (that's Darwin - Hannah's family dog). Can you tell we have a type?"
   }
 ];
 
@@ -43,9 +47,6 @@ const OurStory: React.FC = () => {
         >
           <h2 className="font-serif text-3xl md:text-4xl mb-4">Our Story</h2>
           <div className="h-px w-20 bg-wedding-gold mx-auto mb-6"></div>
-          <p className="max-w-2xl mx-auto text-wedding-charcoal/80">
-            From a chance meeting to a lifetime together, here's our journey so far.
-          </p>
         </motion.div>
         
         <Timeline events={timelineEvents} />

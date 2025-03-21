@@ -19,21 +19,6 @@ const Details = () => {
     >
       <Navbar />
       <main className="pt-32 pb-0">
-        <div className="max-w-6xl mx-auto px-4">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h1 className="font-serif text-3xl md:text-4xl mb-4">Wedding Details</h1>
-            <div className="h-px w-20 bg-wedding-gold mx-auto mb-6"></div>
-            <p className="max-w-2xl mx-auto text-wedding-charcoal/80">
-              Everything you need to know about our celebration.
-            </p>
-          </motion.div>
-        </div>
-        
         <WeddingDetails />
         
         <section className="py-16 px-4">

@@ -9,6 +9,7 @@ interface TimelineEvent {
   title: string;
   description: string;
   image?: string;
+  caption?: string;
 }
 
 interface TimelineProps {
@@ -38,9 +39,8 @@ const Timeline: React.FC<TimelineProps> = ({ events }) => {
               <div className="absolute top-20 bottom-0 left-1/2 md:left-auto md:right-1/2 w-px bg-wedding-gold/30 translate-y-10 md:-translate-x-px"></div>
             )}
             
-            {/* Date circle */}
-            <div className="absolute top-16 left-1/2 md:left-auto md:top-0 md:right-1/2 -translate-x-1/2 md:translate-x-0 md:translate-y-0 w-12 h-12 rounded-full bg-wedding-gold text-white flex items-center justify-center z-10">
-              {index + 1}
+            {/* Date circle - removed the number {index + 1} */}
+            <div className="absolute top-16 left-1/2 md:left-auto md:top-0 md:right-1/2 -translate-x-1/2 md:translate-x-0 md:translate-y-0 w-3 h-3 rounded-full bg-wedding-gold z-10">
             </div>
             
             {/* Content */}
@@ -65,6 +65,11 @@ const Timeline: React.FC<TimelineProps> = ({ events }) => {
                     alt={event.title}
                     className="w-full h-64 md:h-72 object-cover"
                   />
+                  {event.caption && (
+                    <p className="text-sm italic text-wedding-charcoal/70 mt-2 px-3 pb-3">
+                      {event.caption}
+                    </p>
+                  )}
                 </div>
               </div>
             )}

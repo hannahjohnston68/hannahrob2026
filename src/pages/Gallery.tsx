@@ -8,64 +8,211 @@ import { motion } from 'framer-motion';
 const galleryImages = [
   {
     id: 1,
-    src: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80",
-    alt: "Couple walking in a park",
+    src: "/hannahrob2026/images/gallery/IMG_0159.JPG",
+    alt: "Wedding photo",
     width: 800,
     height: 600
   },
   {
     id: 2,
-    src: "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&q=80",
-    alt: "Mountain landscape",
+    src: "/hannahrob2026/images/gallery/IMG_0163.JPG",
+    alt: "Wedding photo",
     width: 800,
     height: 600
   },
   {
     id: 3,
-    src: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&q=80",
-    alt: "Pine trees",
+    src: "/hannahrob2026/images/gallery/IMG_0311.jpg",
+    alt: "Wedding photo",
     width: 800,
     height: 600
   },
   {
     id: 4,
-    src: "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=800&q=80",
-    alt: "Deer in nature",
+    src: "/hannahrob2026/images/gallery/IMG_0474.jpg",
+    alt: "Wedding photo",
     width: 800,
     height: 600
   },
   {
     id: 5,
-    src: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800&q=80",
-    alt: "Orange flowers",
+    src: "/hannahrob2026/images/gallery/IMG_1161.jpg",
+    alt: "Wedding photo",
     width: 800,
     height: 600
   },
   {
     id: 6,
-    src: "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&q=80",
-    alt: "River landscape",
+    src: "/hannahrob2026/images/gallery/IMG_1862.JPG",
+    alt: "Wedding photo",
     width: 800,
     height: 600
   },
   {
     id: 7,
-    src: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&q=80",
-    alt: "Forest trees",
+    src: "/hannahrob2026/images/gallery/IMG_20190921_180738.jpg",
+    alt: "Wedding photo",
     width: 800,
     height: 600
   },
   {
     id: 8,
-    src: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80",
-    alt: "Sunlight through trees",
+    src: "/hannahrob2026/images/gallery/IMG_2154.jpg",
+    alt: "Wedding photo",
     width: 800,
     height: 600
   },
   {
     id: 9,
-    src: "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=800&q=80",
-    alt: "Deer in mountains",
+    src: "/hannahrob2026/images/gallery/IMG_3287.JPG",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 10,
+    src: "/hannahrob2026/images/gallery/IMG_3479.JPG",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 11,
+    src: "/hannahrob2026/images/gallery/IMG_3485.JPG",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 12,
+    src: "/hannahrob2026/images/gallery/IMG_3486.JPG",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 13,
+    src: "/hannahrob2026/images/gallery/IMG_3489.JPG",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 14,
+    src: "/hannahrob2026/images/gallery/IMG_3817.jpg",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 15,
+    src: "/hannahrob2026/images/gallery/IMG_4317.JPG",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 16,
+    src: "/hannahrob2026/images/gallery/IMG_4457.jpg",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 17,
+    src: "/hannahrob2026/images/gallery/IMG_4460.jpg",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 18,
+    src: "/hannahrob2026/images/gallery/IMG_4478 2.jpg",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 19,
+    src: "/hannahrob2026/images/gallery/IMG_4516.JPG",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 20,
+    src: "/hannahrob2026/images/gallery/IMG_5393.jpg",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 21,
+    src: "/hannahrob2026/images/gallery/IMG_7126.jpg",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 22,
+    src: "/hannahrob2026/images/gallery/IMG_7143.JPG",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 23,
+    src: "/hannahrob2026/images/gallery/IMG_7148.JPG",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 24,
+    src: "/hannahrob2026/images/gallery/IMG_7149.JPG",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 25,
+    src: "/hannahrob2026/images/gallery/IMG_7662.jpg",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 26,
+    src: "/hannahrob2026/images/gallery/IMG_7820.jpg",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 27,
+    src: "/hannahrob2026/images/gallery/IMG_9013.JPG",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 28,
+    src: "/hannahrob2026/images/gallery/IMG_9015.JPG",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 29,
+    src: "/hannahrob2026/images/gallery/PXL_20220223_112529758.jpg",
+    alt: "Wedding photo",
+    width: 800,
+    height: 600
+  },
+  {
+    id: 30,
+    src: "/hannahrob2026/images/gallery/PXL_20250225_151326960.JPG",
+    alt: "Wedding photo",
     width: 800,
     height: 600
   }
@@ -92,10 +239,10 @@ const Gallery = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h1 className="font-serif text-3xl md:text-4xl mb-4">Our Gallery</h1>
-            <div className="h-px w-20 bg-wedding-gold mx-auto mb-6"></div>
+            <h1 className="font-serif text-3xl md:text-4xl mb-4">Gallery</h1>
+            <div className="h-px w-20 bg-wedding-pink mx-auto mb-6"></div>
             <p className="max-w-2xl mx-auto text-wedding-charcoal/80">
-              A collection of our favorite memories together. We can't wait to create more with you on our special day.
+              Some of our favourite memories together!
             </p>
           </motion.div>
           

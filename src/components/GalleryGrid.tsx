@@ -18,15 +18,47 @@ interface GalleryGridProps {
 }
 
 const GalleryGrid: React.FC<GalleryGridProps> = ({ images }) => {
-  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
-  const openLightbox = (image: GalleryImage) => {
-    setSelectedImage(image);
+  const openLightbox = (index: number) => {
+    setSelectedImageIndex(index);
   };
 
   const closeLightbox = () => {
-    setSelectedImage(null);
+    setSelectedImageIndex(null);
   };
+
+  const showNextImage = () => {
+    if (selectedImageIndex === null) return;
+    setSelectedImageIndex((selectedImageIndex + 1) % images.length);
+  };
+
+  const showPreviousImage = () => {
+    if (selectedImageIndex === null) return;
+    setSelectedImageIndex((selectedImageIndex - 1 + images.length) % images.length);
+  };
+
+  // Handle keyboard navigation
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (selectedImageIndex === null) return;
+    
+    switch (e.key) {
+      case 'ArrowRight':
+        showNextImage();
+        break;
+      case 'ArrowLeft':
+        showPreviousImage();
+        break;
+      case 'Escape':
+        closeLightbox();
+        break;
+    }
+  };
+
+  React.useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedImageIndex]); // Add selectedImageIndex as dependency
 
   return (
     <>
@@ -36,35 +68,37 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ images }) => {
             key={image.id}
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            transition={{ duration: 0.3 }}
             whileHover={{ scale: 1.02 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-50px" }}
             className="overflow-hidden rounded-lg shadow-md cursor-pointer"
-            onClick={() => openLightbox(image)}
+            onClick={() => openLightbox(index)}
           >
             <ImageWithLoader
               src={image.src}
               alt={image.alt}
-              className="w-full h-64 md:h-72 object-cover transition-transform duration-500 hover:scale-110"
+              className="w-full h-64 md:h-72 object-cover transition-transform duration-300 hover:scale-110"
+              loading="lazy"
             />
           </motion.div>
         ))}
       </div>
 
-      <Dialog open={!!selectedImage} onOpenChange={() => closeLightbox()}>
-        <DialogContent className="max-w-4xl bg-black/90 border-none p-0 overflow-hidden">
+      <Dialog open={selectedImageIndex !== null} onOpenChange={() => closeLightbox()}>
+        <DialogContent className="max-w-[95vw] max-h-[95vh] bg-black/90 border-none p-0 overflow-hidden">
           <button
             onClick={closeLightbox}
-            className="absolute right-4 top-4 z-10 rounded-full bg-black/20 p-2 text-white hover:bg-black/40 transition-colors"
+            className="absolute right-2 top-2 z-50 rounded-full bg-black/20 p-2 text-white hover:bg-black/40 transition-colors"
           >
             <X size={24} />
           </button>
-          {selectedImage && (
-            <div className="flex items-center justify-center w-full h-full">
+          
+          {selectedImageIndex !== null && (
+            <div className="relative w-full h-full flex items-center justify-center">
               <img
-                src={selectedImage.src}
-                alt={selectedImage.alt}
-                className="max-h-[80vh] max-w-full object-contain"
+                src={images[selectedImageIndex].src}
+                alt={images[selectedImageIndex].alt}
+                className="max-h-[95vh] w-auto max-w-[95vw] object-contain"
               />
             </div>
           )}

@@ -23,46 +23,40 @@ const HeroSection: React.FC = () => {
   }, []);
 
   return <div ref={sectionRef} className="relative h-screen w-full bg-cover bg-center flex items-center justify-center overflow-hidden" style={{
-    backgroundImage: "url(https://images.unsplash.com/photo-1466781783364-36c955e42a7f?w=1500&q=80)",
+    backgroundImage: "url(/hannahrob2026/images/gallery/archeo-wedding13.jpg)",
     backgroundAttachment: "fixed"
   }}>
       <div className="absolute inset-0 bg-black/20" />
 
-      <motion.div initial={{
-      opacity: 0,
-      scale: 0.9
-    }} animate={{
-      opacity: 1,
-      scale: 1
-    }} transition={{
-      duration: 1.2,
-      ease: "easeOut"
-    }} className={cn("relative z-10 text-center px-4 py-16 max-w-3xl mx-auto", "glass-card rounded-lg bg-white/60 shadow-xl backdrop-blur-sm")}>
-        <motion.div initial={{
-        opacity: 0,
-        y: 20
-      }} animate={{
-        opacity: 1,
-        y: 0
-      }} transition={{
-        delay: 0.3,
-        duration: 0.8
-      }}>
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.9 }} 
+        animate={{ opacity: 1, scale: 1 }} 
+        transition={{ duration: 1.2, ease: "easeOut" }} 
+        className={cn(
+          "relative z-10 text-center px-12 py-12 max-w-4xl mx-auto",  // reduced py-16 to py-12
+          "glass-card rounded-lg bg-white/60 shadow-xl backdrop-blur-sm"
+        )}
+      >
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ delay: 0.3, duration: 0.8 }}
+        >
           <p className="font-body uppercase tracking-[0.3em] text-sm mb-4 text-wedding-charcoal/80">We're Getting Married</p>
           <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl mb-6 text-wedding-charcoal leading-tight">
-            Hannah <span className="font-normal text-wedding-gold">&</span> Rob
+            Hannah <span className="font-normal text-wedding-pink">&</span> Rob
           </h1>
-          <p className="font-body uppercase tracking-[0.15em] text-lg mb-8 text-wedding-charcoal">SEPTEMBER 12, 2026 • Toronto, Ontario</p>
-          <div className="h-px w-24 bg-wedding-gold mx-auto mb-8" />
-          <motion.div initial={{
-          opacity: 0
-        }} animate={{
-          opacity: 1
-        }} transition={{
-          delay: 1,
-          duration: 1
-        }}>
-            <a href="/rsvp" className="inline-block px-8 py-3 border border-wedding-gold text-wedding-gold hover:bg-wedding-gold hover:text-white transition-colors duration-300 uppercase tracking-widest text-sm font-body">
+          <p className="font-body uppercase tracking-[0.15em] text-lg mb-4 text-wedding-charcoal">SEPTEMBER 12, 2026 • Toronto, Ontario</p>
+          <div className="h-px w-24 bg-wedding-gold mx-auto mb-4" />
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            transition={{ delay: 1, duration: 1 }}
+          >
+            <a 
+              href="/rsvp" 
+              className="inline-block px-8 py-3 border-2 border-wedding-pink bg-wedding-pink/10 text-wedding-pink hover:bg-wedding-pink hover:text-white transition-colors duration-300 uppercase tracking-widest text-sm font-body"
+            >
               RSVP Now
             </a>
           </motion.div>

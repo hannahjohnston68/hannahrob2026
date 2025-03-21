@@ -10,34 +10,30 @@ const ImageWithLoader: React.FC<ImageWithLoaderProps> = ({
   src, 
   alt = "", 
   className, 
-  placeholder = "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=20&q=10", 
+  placeholder = "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==", // Using a tiny transparent GIF
   ...rest 
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative w-full h-full">
       {!isLoaded && (
-        <img 
-          src={placeholder} 
-          alt="Loading..." 
-          className={cn(
-            "w-full h-full object-cover transition-opacity duration-500 blur-md",
-            className
-          )}
-        />
+        <div className="absolute inset-0 bg-gray-200 animate-pulse" />
       )}
       <img
         src={error ? placeholder : src}
         alt={alt}
         className={cn(
-          "w-full h-full object-cover transition-opacity duration-500",
+          "w-full h-full object-cover transition-all duration-300",
           !isLoaded && "opacity-0",
           isLoaded && "opacity-100",
           className
         )}
-        onLoad={() => setIsLoaded(true)}
+        onLoad={() => {
+          setIsLoaded(true);
+          setError(false);
+        }}
         onError={() => {
           setError(true);
           setIsLoaded(true);
