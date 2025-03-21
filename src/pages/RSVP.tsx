@@ -1,42 +1,36 @@
-import React, { useEffect } from 'react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import RSVPForm from '@/components/RSVPForm';
+import React from 'react';
+import { useEffect } from 'react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import RSVPForm from '../components/RSVPForm';
 import { motion } from 'framer-motion';
-const RSVP = () => {
+
+const RSVP: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  return <motion.div initial={{
-    opacity: 0
-  }} animate={{
-    opacity: 1
-  }} exit={{
-    opacity: 0
-  }} transition={{
-    duration: 0.5
-  }}>
+
+  return (
+    <>
       <Navbar />
-      <main className="min-h-screen pt-32 pb-20 px-4 bg-wedding-blush/20">
-        <div className="max-w-6xl mx-auto">
-          <motion.div initial={{
-          opacity: 0,
-          y: 20
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.8
-        }} className="text-center mb-16">
-            <h1 className="font-serif text-3xl md:text-4xl mb-4">RSVP</h1>
-            <div className="h-px w-20 bg-wedding-gold mx-auto mb-6"></div>
-            <p className="max-w-2xl mx-auto text-wedding-charcoal/80 mb-8">We're excited to celebrate with you! Please let us know if you can join us on our special day by September 12, 2026.</p>
-          </motion.div>
-          
-          <RSVPForm />
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        className="min-h-screen bg-wedding-cream pt-24 pb-16"
+      >
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto">
+            <h1 className="text-3xl md:text-4xl font-serif text-center mb-4">RSVP</h1>
+            <div className="h-px w-20 bg-wedding-pink mx-auto mb-8"></div>
+            <RSVPForm />
+          </div>
         </div>
-      </main>
+      </motion.div>
       <Footer />
-    </motion.div>;
+    </>
+  );
 };
+
 export default RSVP;

@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import ImageWithLoader from './ImageWithLoader';
+import { Link } from "react-router-dom";
 
 const HeroSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -53,12 +54,12 @@ const HeroSection: React.FC = () => {
             animate={{ opacity: 1 }} 
             transition={{ delay: 1, duration: 1 }}
           >
-            <a 
-              href="/rsvp" 
+            <Link
+              to="/rsvp"
               className="inline-block px-8 py-3 border-2 border-wedding-pink bg-wedding-pink/10 text-wedding-pink hover:bg-wedding-pink hover:text-white transition-colors duration-300 uppercase tracking-widest text-sm font-body"
             >
               RSVP Now
-            </a>
+            </Link>
           </motion.div>
         </motion.div>
       </motion.div>

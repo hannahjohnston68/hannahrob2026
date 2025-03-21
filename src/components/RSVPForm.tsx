@@ -4,11 +4,11 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Textarea } from '@/components/ui/textarea';
+import { Button } from './ui/button';
+import { Input } from './ui/input';
+import { Label } from './ui/label';
+import { RadioGroup, RadioGroupItem } from './ui/radio-group';
+import { Textarea } from './ui/textarea';
 import { toast } from 'sonner';
 import {
   Form,
@@ -17,14 +17,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
+} from './ui/form';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
+} from './ui/select';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),

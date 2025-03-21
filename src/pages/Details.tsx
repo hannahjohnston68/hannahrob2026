@@ -1,8 +1,9 @@
 
-import React, { useEffect } from 'react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import WeddingDetails from '@/components/WeddingDetails';
+import { jsxDEV } from "react/jsx-dev-runtime";
+import { useEffect } from "react";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import WeddingDetails from "../components/WeddingDetails";
 import { motion } from 'framer-motion';
 
 const Details = () => {

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import { cn } from '@/lib/utils';
-import { Menu, X } from 'lucide-react';
-import { useIsMobile } from '@/hooks/use-mobile';
+import { NavLink } from "react-router-dom";
+import { cn } from "../lib/utils";
+import { Menu, X } from "lucide-react";
+import { useIsMobile } from "../hooks/use-mobile";
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
