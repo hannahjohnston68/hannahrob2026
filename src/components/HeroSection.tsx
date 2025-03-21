@@ -23,18 +23,23 @@ const HeroSection: React.FC = () => {
     return () => window.removeEventListener('scroll', handleParallax);
   }, []);
 
-  return <div ref={sectionRef} className="relative h-screen w-full bg-cover bg-center flex items-center justify-center overflow-hidden" style={{
-    backgroundImage: "url(/hannahrob2026/images/gallery/archeo-wedding13.jpg)",
-    backgroundAttachment: "fixed"
-  }}>
+  return (
+    <div 
+      ref={sectionRef} 
+      className="relative h-screen w-full bg-cover bg-center flex items-center justify-center overflow-hidden"
+      style={{
+        backgroundImage: `url(/hannahrob2026/images/gallery/archeo-wedding13.jpg)`,
+        backgroundAttachment: "fixed"
+      }}
+    >
       <div className="absolute inset-0 bg-black/20" />
 
       <motion.div 
         initial={{ opacity: 0, scale: 0.9 }} 
         animate={{ opacity: 1, scale: 1 }} 
-        transition={{ duration: 1.2, ease: "easeOut" }} 
+        transition={{ duration: 1.2, ease: "easeOut" }}
         className={cn(
-          "relative z-10 text-center px-12 py-12 max-w-4xl mx-auto",  // reduced py-16 to py-12
+          "relative z-10 text-center px-12 py-12 max-w-4xl mx-auto",
           "glass-card rounded-lg bg-white/60 shadow-xl backdrop-blur-sm"
         )}
       >
@@ -69,7 +74,8 @@ const HeroSection: React.FC = () => {
           <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
         </svg>
       </div>
-    </div>;
+    </div>
+  );
 };
 
 export default HeroSection;

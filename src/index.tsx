@@ -4,10 +4,9 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "./index.css";
 
+// Removed StrictMode as it can cause animation issues
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <BrowserRouter basename="/hannahrob2026">
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter basename="/hannahrob2026">
+    <App />
+  </BrowserRouter>
 );

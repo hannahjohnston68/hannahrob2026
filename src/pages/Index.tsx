@@ -18,9 +18,10 @@ const Index = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
+      className="relative"
     >
       <Navbar />
-      <main>
+      <main className="relative">
         <HeroSection />
         <OurStory />
         <WeddingDetails />

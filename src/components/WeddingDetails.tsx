@@ -93,10 +93,10 @@ const WeddingDetails: React.FC = () => {
           <DetailCard icon={<Calendar size={26} />} title="Date & Schedule" delay={0.1}>
             <button 
               onClick={handleAddToCalendar}
-              className="mb-2 hover:text-wedding-pink transition-colors duration-300 cursor-pointer inline-flex items-center gap-2"
+              className="mb-2 hover:text-wedding-pink transition-colors duration-300 cursor-pointer inline-flex items-center gap-2 group"
             >
               Saturday, September 12, 2026
-              <Calendar size={16} className="inline-block" />
+              <ExternalLink size={12} className="inline-block opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </button>
             <p className="mb-2">Ceremony: 10:00 AM</p>
             <p className="mb-4 text-sm italic">(vows, rings and i do's)</p>
