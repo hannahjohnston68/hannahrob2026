@@ -77,6 +77,11 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+/* Add a modifier class for when we don't want borders */
+.glass-card-borderless {
+  border: none;
+}
+
 .parallax-bg {
   background-attachment: fixed;
   background-position: center;

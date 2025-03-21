@@ -7,7 +7,7 @@ const timelineEvents = [
   {
     date: "September 2018",
     title: "First Date",
-    description: "We had our first date at Sneaky Dee's on College Street and split a plate of nachos.",
+    description: "We had our first date at Sneaky Dee's on College Street and split a plate of nachos. We bonded over our shared love of dogs and jazz!",
     image: "/hannahrob2026/images/gallery/IMG_3478.JPG",  // Path will be correct after setup-gallery.sh runs
     caption: "Not our first date, but our first photo together! This is us after 4 months of dating on Rob's 23rd birthday. That's Hannah's little brother looking cheerful on the right..."
   },
@@ -16,7 +16,7 @@ const timelineEvents = [
     title: "Moving In Together",
     description: "After three years of dating, we decided to take the next step and move into our an apartment together at Yonge & Eglinton.",
     image: "/hannahrob2026/images/gallery/IMG_0265.JPG",  // Path will be correct after setup-gallery.sh runs
-    caption: "Here we are dressed up in our living room headed out to Hannah's grandmother's birthday party"
+    caption: "Here we are dressed up in our living room before heading out to Hannah's grandparent's anniversary party."  
   },
   {
     date: "September 2023",
@@ -27,8 +27,8 @@ const timelineEvents = [
   },
   {
     date: "November 2023",
-    title: "Adopted A Dog",
-    description: "Two months after getting engaged, we adopted a puppy: Boji!",
+    title: "Adopting Our First Dog",
+    description: "Two months after getting engaged, we adopted a new puppy: Boji!",
     image: "/hannahrob2026/images/gallery/IMG_3817.jpg",
     caption: "Note: not the same beagle as in the photo above (that's Darwin - Hannah's family dog). Can you tell we have a type?"
   }
