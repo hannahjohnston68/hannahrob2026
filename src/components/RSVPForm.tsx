@@ -263,96 +263,30 @@ export function RSVPForm() {
                 </div>
                 {isGroupRSVP ? (
                   <div className="space-y-4">
-                    {groupMembers.length > 1 ? (
-                      <div className="space-y-4">
-                        {groupMembers.map((member) => (
-                          <div key={member.name} className="flex items-center justify-between space-x-4">
-                            <Label htmlFor={`toggle-${member.name}`} className="text-sm font-body">
-                              {member.name}
-                            </Label>
-                            <div className="flex items-center space-x-2">
-                              <Label htmlFor={`toggle-${member.name}`} className="text-sm font-body">
-                                {memberResponses[member.name] === 'yes' ? 'Attending' : 'Not Attending'}
-                              </Label>
-                              <Switch
-                                id={`toggle-${member.name}`}
-                                checked={memberResponses[member.name] === 'yes'}
-                                onCheckedChange={(checked) => 
-                                  setMemberResponse(member.name, checked ? 'yes' : 'no')
-                                }
-                                className="data-[state=checked]:bg-wedding-pink"
-                              />
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between space-x-4">
-                          <Label htmlFor={`toggle-${groupMembers[0].name}`} className="text-sm font-body">
-                            {groupMembers[0].name}
-                          </Label>
+                    <div className="space-y-4">
+                      {groupMembers.map((member) => (
+                        <div key={member.name} className="flex items-center justify-between space-x-4">
+                          <Label className="font-body">{member.name}</Label>
                           <div className="flex items-center space-x-2">
-                            <Label htmlFor={`toggle-${groupMembers[0].name}`} className="text-sm font-body">
-                              {memberResponses[groupMembers[0].name] === 'yes' ? 'Attending' : 'Not Attending'}
-                            </Label>
+                            <span className="text-sm font-body text-gray-500">
+                              {memberResponses[member.name] === 'yes' ? 'Attending' : 'Not Attending'}
+                            </span>
                             <Switch
-                              id={`toggle-${groupMembers[0].name}`}
-                              checked={memberResponses[groupMembers[0].name] === 'yes'}
-                              onCheckedChange={(checked) => 
-                                setMemberResponse(groupMembers[0].name, checked ? 'yes' : 'no')
-                              }
+                              checked={memberResponses[member.name] === 'yes'}
+                              onCheckedChange={(checked) => {
+                                setMemberResponses(prev => ({
+                                  ...prev,
+                                  [member.name]: checked ? 'yes' : 'no'
+                                }));
+                              }}
                               className="data-[state=checked]:bg-wedding-pink"
                             />
                           </div>
                         </div>
-                      </div>
-                    )}
-
-                    <div className="space-y-2">
-                      <label htmlFor="groupDietary" className="text-sm font-medium font-body">
-                        Any Dietary Requirements (Optional):
-                      </label>
-                      <Input
-                        id="groupDietary"
-                        value={groupDietary}
-                        onChange={(e) => setGroupDietary(e.target.value)}
-                        placeholder="Enter any dietary requirements"
-                        className="focus:border-wedding-pink focus:ring-wedding-pink font-body"
-                      />
+                      ))}
                     </div>
-
-                    <Button 
-                      onClick={submitRSVP} 
-                      disabled={isLoading}
-                      className="w-full bg-wedding-pink hover:bg-wedding-pink/90 font-body"
-                    >
-                      {isLoading ? 'Submitting...' : groupMembers.length > 1 ? 'Submit Group RSVP' : 'Submit RSVP'}
-                    </Button>
-                  </div>
-                ) : (
-                  <div className="space-y-4">
                     <div className="space-y-2">
-                      <label className="text-sm font-medium font-body">
-                        Will you be attending?
-                      </label>
-                      <div className="flex items-center justify-between space-x-4">
-                        <Label htmlFor="attending-toggle" className="text-sm font-body">
-                          {attending === 'yes' ? 'Attending' : 'Not Attending'}
-                        </Label>
-                        <Switch
-                          id="attending-toggle"
-                          checked={attending === 'yes'}
-                          onCheckedChange={(checked) => setAttending(checked ? 'yes' : 'no')}
-                          className="data-[state=checked]:bg-wedding-pink"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <label htmlFor="dietary" className="text-sm font-medium font-body">
-                        Dietary Requirements (Optional):
-                      </label>
+                      <Label htmlFor="dietary" className="font-body">Dietary Requirements</Label>
                       <Input
                         id="dietary"
                         value={dietary}
@@ -361,10 +295,42 @@ export function RSVPForm() {
                         className="focus:border-wedding-pink focus:ring-wedding-pink font-body"
                       />
                     </div>
-
                     <Button 
                       onClick={submitRSVP} 
-                      disabled={isLoading || !attending}
+                      disabled={isLoading}
+                      className="w-full bg-wedding-pink hover:bg-wedding-pink/90 font-body"
+                    >
+                      {isLoading ? 'Submitting...' : 'Submit Group RSVP'}
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between space-x-4">
+                      <Label className="font-body">Will you be attending?</Label>
+                      <div className="flex items-center space-x-2">
+                        <span className="text-sm font-body text-gray-500">
+                          {attending === 'yes' ? 'Attending' : 'Not Attending'}
+                        </span>
+                        <Switch
+                          checked={attending === 'yes'}
+                          onCheckedChange={(checked) => setAttending(checked ? 'yes' : 'no')}
+                          className="data-[state=checked]:bg-wedding-pink"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="dietary" className="font-body">Dietary Requirements</Label>
+                      <Input
+                        id="dietary"
+                        value={dietary}
+                        onChange={(e) => setDietary(e.target.value)}
+                        placeholder="Enter any dietary requirements"
+                        className="focus:border-wedding-pink focus:ring-wedding-pink font-body"
+                      />
+                    </div>
+                    <Button 
+                      onClick={submitRSVP} 
+                      disabled={isLoading}
                       className="w-full bg-wedding-pink hover:bg-wedding-pink/90 font-body"
                     >
                       {isLoading ? 'Submitting...' : 'Submit RSVP'}
