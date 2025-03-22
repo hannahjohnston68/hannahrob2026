@@ -129,6 +129,7 @@ export function RSVPForm() {
           ? "We're so excited that you'll be celebrating with us! It means the world to have you there on our special day. See you soon!"
           : "We'll miss you, but we understand! Thank you for letting us know. Sending love, and we hope to celebrate with you another time!"
         );
+        setShowRSVPForm(false);
       } else {
         const params = new URLSearchParams({
           action: 'submitRSVP',
@@ -148,6 +149,7 @@ export function RSVPForm() {
               ? "We're so excited that you'll be celebrating with us! It means the world to have you there on our special day. See you soon!"
               : "We'll miss you, but we understand! Thank you for letting us know. Sending love, and we hope to celebrate with you another time!"
             );
+            setShowRSVPForm(false);
           } else {
             setMessage(data.message || 'Error submitting RSVP');
             setIsError(true);
@@ -161,6 +163,7 @@ export function RSVPForm() {
               ? "We're so excited that you'll be celebrating with us! It means the world to have you there on our special day. See you soon!"
               : "We'll miss you, but we understand! Thank you for letting us know. Sending love, and we hope to celebrate with you another time!"
             );
+            setShowRSVPForm(false);
           }
         }
       }
@@ -189,9 +192,9 @@ export function RSVPForm() {
   return (
     <Card className="w-full max-w-md mx-auto">
       <CardContent className="p-6">
-        {message && message.includes('COWORKER FREE ZONE') ? (
+        {message ? (
           <div className="text-center space-y-4">
-            <p className="font-playfair text-2xl font-bold text-red-600 animate-bounce">
+            <p className={`font-playfair text-xl ${isError ? 'text-red-600' : 'text-gray-700'}`}>
               {message}
             </p>
             <Button 
