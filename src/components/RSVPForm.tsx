@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 
@@ -28,7 +26,6 @@ export function RSVPForm() {
   const [groupMembers, setGroupMembers] = useState<GroupMember[]>([]);
   const [isGroupRSVP, setIsGroupRSVP] = useState(false);
   const [memberResponses, setMemberResponses] = useState<Record<string, string>>({});
-  const [groupDietary, setGroupDietary] = useState('');
 
   const checkName = async () => {
     if (!name.trim()) {
@@ -43,23 +40,21 @@ export function RSVPForm() {
     try {
       const response = await fetch(`${SCRIPT_URL}?name=${encodeURIComponent(name.trim())}`);
       const data = await response.json();
-      console.log('Name verification response:', data); // Debug log
+      console.log('Name verification response:', data);
 
       if (data.isValid) {
         setVerifiedName(name.trim());
         
-        // Check if this is a group member
         if (data.groupMembers) {
-          console.log('Group members data:', data.groupMembers); // Debug log
+          console.log('Group members data:', data.groupMembers);
           setGroupMembers(data.groupMembers);
           setIsGroupRSVP(true);
           setShowRSVPForm(true);
-          // Initialize member responses to 'yes'
           const initialResponses: Record<string, string> = {};
           data.groupMembers.forEach((m: GroupMember) => {
             initialResponses[m.name] = 'yes';
           });
-          console.log('Initial responses:', initialResponses); // Debug log
+          console.log('Initial responses:', initialResponses);
           setMemberResponses(initialResponses);
         } else {
           setShowRSVPForm(true);
@@ -68,25 +63,18 @@ export function RSVPForm() {
         setMessage('Sorry this is wedding is a COWORKER FREE ZONE');
         setIsError(true);
         setShowRSVPForm(false);
-        return; // Add return to prevent further execution
+        return;
       } else {
         setMessage(data.message);
         setIsError(true);
       }
     } catch (error) {
-      console.error('Name verification error:', error); // Debug log
+      console.error('Name verification error:', error);
       setMessage('Error verifying name. Please try again.');
       setIsError(true);
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const setMemberResponse = (memberName: string, response: string) => {
-    setMemberResponses(prev => ({
-      ...prev,
-      [memberName]: response
-    }));
   };
 
   const submitRSVP = async () => {
@@ -101,31 +89,29 @@ export function RSVPForm() {
 
     try {
       if (isGroupRSVP) {
-        // Submit group RSVP - send each member as a separate entry
         const rsvpEntries = groupMembers.map(member => ({
           name: member.name,
           attending: memberResponses[member.name],
-          dietary: groupDietary.trim() || 'None'
+          dietary: dietary.trim() || 'None'
         }));
 
-        console.log('RSVP Entries:', rsvpEntries); // Debug log
+        console.log('RSVP Entries:', rsvpEntries);
 
-        // Send each member's RSVP separately
         for (const entry of rsvpEntries) {
           const params = new URLSearchParams({
             action: 'submitRSVP',
             name: entry.name,
             attending: entry.attending,
             dietary: entry.dietary,
-            groupKey: groupMembers[0].groupKey // Include group key for each submission
+            groupKey: groupMembers[0].groupKey
           });
 
           const url = `${SCRIPT_URL}?${params.toString()}`;
-          console.log('Request URL:', url); // Debug log
+          console.log('Request URL:', url);
 
           const response = await fetch(url);
           const text = await response.text();
-          console.log('Response text:', text); // Debug log
+          console.log('Response text:', text);
 
           try {
             const data = JSON.parse(text);
@@ -138,14 +124,12 @@ export function RSVPForm() {
           }
         }
 
-        // If we get here, all RSVPs were successful
         const hasAnyAttending = Object.values(memberResponses).some(response => response === 'yes');
         setMessage(hasAnyAttending 
           ? "We're so excited that you'll be celebrating with us! It means the world to have you there on our special day. See you soon!"
           : "We'll miss you, but we understand! Thank you for letting us know. Sending love, and we hope to celebrate with you another time!"
         );
       } else {
-        // Submit individual RSVP
         const params = new URLSearchParams({
           action: 'submitRSVP',
           name: verifiedName,
@@ -155,7 +139,7 @@ export function RSVPForm() {
 
         const response = await fetch(`${SCRIPT_URL}?${params.toString()}`);
         const text = await response.text();
-        console.log('Response text:', text); // Debug log
+        console.log('Response text:', text);
 
         try {
           const data = JSON.parse(text);
@@ -169,7 +153,6 @@ export function RSVPForm() {
             setIsError(true);
           }
         } catch (e) {
-          // If response is not JSON, check for error text
           if (text.toLowerCase().includes('error')) {
             setMessage(text || 'Error submitting RSVP');
             setIsError(true);
@@ -182,7 +165,7 @@ export function RSVPForm() {
         }
       }
     } catch (error) {
-      console.error('Submission error:', error); // Debug log
+      console.error('Submission error:', error);
       setMessage('Error submitting RSVP. Please try again.');
       setIsError(true);
     } finally {
@@ -190,7 +173,6 @@ export function RSVPForm() {
     }
   };
 
-  // Add a function to handle form reset
   const resetForm = () => {
     setShowRSVPForm(false);
     setName('');
@@ -199,7 +181,6 @@ export function RSVPForm() {
     setVerifiedName('');
     setAttending('yes');
     setDietary('');
-    setGroupDietary('');
     setGroupMembers([]);
     setIsGroupRSVP(false);
     setMemberResponses({});
@@ -239,111 +220,81 @@ export function RSVPForm() {
           </div>
         ) : (
           <div className="space-y-6">
-            {message ? (
-              <div className="text-center space-y-4">
-                <p className={`font-playfair text-lg ${message.includes('COWORKER FREE ZONE') 
-                  ? 'text-red-600 text-2xl font-bold animate-bounce' 
-                  : 'text-gray-800'}`}>
-                  {message}
-                </p>
-                <Button 
-                  onClick={resetForm}
-                  className="w-full bg-wedding-pink hover:bg-wedding-pink/90 font-body"
-                >
-                  Start Over
-                </Button>
-              </div>
-            ) : (
-              <>
-                <div className="text-center">
-                  <h2 className="font-playfair text-2xl text-gray-800 mb-2">Welcome!</h2>
-                  <p className="font-playfair text-lg text-gray-600 italic">
-                    Please proceed with your {isGroupRSVP && groupMembers.length > 1 ? 'group ' : ''}RSVP
-                  </p>
-                </div>
-                {isGroupRSVP ? (
-                  <div className="space-y-4">
-                    <div className="space-y-4">
-                      {groupMembers.map((member) => (
-                        <div key={member.name} className="flex items-center justify-between space-x-4">
-                          <Label className="font-body">{member.name}</Label>
-                          <div className="flex items-center space-x-2">
-                            <span className="text-sm font-body text-gray-500">
-                              {memberResponses[member.name] === 'yes' ? 'Attending' : 'Not Attending'}
-                            </span>
-                            <Switch
-                              checked={memberResponses[member.name] === 'yes'}
-                              onCheckedChange={(checked) => {
-                                setMemberResponses(prev => ({
-                                  ...prev,
-                                  [member.name]: checked ? 'yes' : 'no'
-                                }));
-                              }}
-                              className="data-[state=checked]:bg-wedding-pink"
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="dietary" className="font-body">Dietary Requirements</Label>
-                      <Input
-                        id="dietary"
-                        value={dietary}
-                        onChange={(e) => setDietary(e.target.value)}
-                        placeholder="Enter any dietary requirements"
-                        className="focus:border-wedding-pink focus:ring-wedding-pink font-body"
-                      />
-                    </div>
-                    <Button 
-                      onClick={submitRSVP} 
-                      disabled={isLoading}
-                      className="w-full bg-wedding-pink hover:bg-wedding-pink/90 font-body"
-                    >
-                      {isLoading ? 'Submitting...' : 'Submit Group RSVP'}
-                    </Button>
-                  </div>
-                ) : (
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between space-x-4">
-                      <Label className="font-body">Will you be attending?</Label>
+            {isGroupRSVP ? (
+              <div className="space-y-4">
+                <div className="space-y-4">
+                  {groupMembers.map((member) => (
+                    <div key={member.name} className="flex items-center justify-between space-x-4">
+                      <Label className="font-body">{member.name}</Label>
                       <div className="flex items-center space-x-2">
                         <span className="text-sm font-body text-gray-500">
-                          {attending === 'yes' ? 'Attending' : 'Not Attending'}
+                          {memberResponses[member.name] === 'yes' ? 'Attending' : 'Not Attending'}
                         </span>
                         <Switch
-                          checked={attending === 'yes'}
-                          onCheckedChange={(checked) => setAttending(checked ? 'yes' : 'no')}
+                          checked={memberResponses[member.name] === 'yes'}
+                          onCheckedChange={(checked) => {
+                            setMemberResponses(prev => ({
+                              ...prev,
+                              [member.name]: checked ? 'yes' : 'no'
+                            }));
+                          }}
                           className="data-[state=checked]:bg-wedding-pink"
                         />
                       </div>
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="dietary" className="font-body">Dietary Requirements</Label>
-                      <Input
-                        id="dietary"
-                        value={dietary}
-                        onChange={(e) => setDietary(e.target.value)}
-                        placeholder="Enter any dietary requirements"
-                        className="focus:border-wedding-pink focus:ring-wedding-pink font-body"
-                      />
-                    </div>
-                    <Button 
-                      onClick={submitRSVP} 
-                      disabled={isLoading}
-                      className="w-full bg-wedding-pink hover:bg-wedding-pink/90 font-body"
-                    >
-                      {isLoading ? 'Submitting...' : 'Submit RSVP'}
-                    </Button>
+                  ))}
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="dietary" className="font-body">Dietary Requirements</Label>
+                  <Input
+                    id="dietary"
+                    value={dietary}
+                    onChange={(e) => setDietary(e.target.value)}
+                    placeholder="Enter any dietary requirements"
+                    className="focus:border-wedding-pink focus:ring-wedding-pink font-body"
+                  />
+                </div>
+                <Button 
+                  onClick={submitRSVP} 
+                  disabled={isLoading}
+                  className="w-full bg-wedding-pink hover:bg-wedding-pink/90 font-body"
+                >
+                  {isLoading ? 'Submitting...' : 'Submit Group RSVP'}
+                </Button>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <div className="flex items-center justify-between space-x-4">
+                  <Label className="font-body">Will you be attending?</Label>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-sm font-body text-gray-500">
+                      {attending === 'yes' ? 'Attending' : 'Not Attending'}
+                    </span>
+                    <Switch
+                      checked={attending === 'yes'}
+                      onCheckedChange={(checked) => setAttending(checked ? 'yes' : 'no')}
+                      className="data-[state=checked]:bg-wedding-pink"
+                    />
                   </div>
-                )}
-
-                {message && (
-                  <Alert className={`mt-4 ${isError ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'} font-body`}>
-                    <AlertDescription>{message}</AlertDescription>
-                  </Alert>
-                )}
-              </>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="dietary" className="font-body">Dietary Requirements</Label>
+                  <Input
+                    id="dietary"
+                    value={dietary}
+                    onChange={(e) => setDietary(e.target.value)}
+                    placeholder="Enter any dietary requirements"
+                    className="focus:border-wedding-pink focus:ring-wedding-pink font-body"
+                  />
+                </div>
+                <Button 
+                  onClick={submitRSVP} 
+                  disabled={isLoading}
+                  className="w-full bg-wedding-pink hover:bg-wedding-pink/90 font-body"
+                >
+                  {isLoading ? 'Submitting...' : 'Submit RSVP'}
+                </Button>
+              </div>
             )}
           </div>
         )}
