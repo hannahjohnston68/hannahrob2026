@@ -1,289 +1,306 @@
-
 import React, { useState } from 'react';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { motion } from 'framer-motion';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
-import { RadioGroup, RadioGroupItem } from './ui/radio-group';
-import { Textarea } from './ui/textarea';
-import { toast } from 'sonner';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from './ui/form';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from './ui/select';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
-const formSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  attending: z.enum(["yes", "no"]),
-  guestCount: z.string().optional(),
-  mealPreference: z.string().optional(),
-  dietaryRestrictions: z.string().optional(),
-  message: z.string().optional(),
-});
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw76T6fPJ0HYO4UIPWDpAAQ5XpxVzgRti8uNO5OagZVqdv0A5ahYEWo1MNPGzbCtHEE/exec';
 
-type FormValues = z.infer<typeof formSchema>;
+interface GroupMember {
+  name: string;
+  attending: string;
+  dietary: string;
+  groupKey: string;
+}
 
-const RSVPForm: React.FC = () => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+export function RSVPForm() {
+  const [name, setName] = useState('');
+  const [attending, setAttending] = useState('yes');
+  const [dietary, setDietary] = useState('');
+  const [verifiedName, setVerifiedName] = useState('');
+  const [message, setMessage] = useState('');
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showRSVPForm, setShowRSVPForm] = useState(false);
+  const [groupMembers, setGroupMembers] = useState<GroupMember[]>([]);
+  const [isGroupRSVP, setIsGroupRSVP] = useState(false);
+  const [memberResponses, setMemberResponses] = useState<Record<string, string>>({});
+  const [groupDietary, setGroupDietary] = useState('');
 
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      attending: "yes",
-      guestCount: "0",
-      mealPreference: "",
-      dietaryRestrictions: "",
-      message: "",
-    },
-  });
+  const checkName = async () => {
+    if (!name.trim()) {
+      setMessage('Please enter your name');
+      setIsError(true);
+      return;
+    }
 
-  const { watch } = form;
-  const attending = watch("attending");
+    setIsLoading(true);
+    setIsError(false);
 
-  const onSubmit = async (data: FormValues) => {
-    setIsSubmitting(true);
-    
     try {
-      // Send form data to Formspree
-      const response = await fetch("https://formspree.io/f/mvgkpdzr", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      
-      if (response.ok) {
-        setIsSubmitted(true);
-        toast.success("Thank you for your RSVP!", {
-          description: "We've received your response and can't wait to celebrate with you!",
-        });
+      const response = await fetch(`${SCRIPT_URL}?name=${encodeURIComponent(name.trim())}`);
+      const data = await response.json();
+      console.log('Name verification response:', data); // Debug log
+
+      if (data.isValid) {
+        setVerifiedName(name.trim());
+        setMessage(data.message);
+        
+        // Check if this is a group member
+        if (data.groupMembers) {
+          console.log('Group members data:', data.groupMembers); // Debug log
+          setGroupMembers(data.groupMembers);
+          setIsGroupRSVP(true);
+          setShowRSVPForm(true);
+          // Initialize member responses to 'yes'
+          const initialResponses: Record<string, string> = {};
+          data.groupMembers.forEach((m: GroupMember) => {
+            initialResponses[m.name] = 'yes';
+          });
+          console.log('Initial responses:', initialResponses); // Debug log
+          setMemberResponses(initialResponses);
+        } else {
+          setShowRSVPForm(true);
+        }
       } else {
-        throw new Error("Failed to submit form");
+        setMessage(data.message);
+        setIsError(true);
       }
     } catch (error) {
-      toast.error("Something went wrong", {
-        description: "We couldn't submit your RSVP. Please try again later.",
-      });
-      console.error("RSVP submission error:", error);
+      console.error('Name verification error:', error); // Debug log
+      setMessage('Error verifying name. Please try again.');
+      setIsError(true);
     } finally {
-      setIsSubmitting(false);
+      setIsLoading(false);
     }
   };
 
-  if (isSubmitted) {
-    return (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="text-center py-12 px-4"
-      >
-        <div className="max-w-md mx-auto glass-card p-8 rounded-lg">
-          <h3 className="font-serif text-2xl mb-4">Thank You!</h3>
-          <p className="mb-6 text-wedding-charcoal/80">
-            We've received your RSVP and can't wait to celebrate with you!
-          </p>
-          <Button
-            onClick={() => setIsSubmitted(false)}
-            className="bg-wedding-gold hover:bg-wedding-gold/80 text-white border-none"
-          >
-            Submit Another Response
-          </Button>
-        </div>
-      </motion.div>
-    );
-  }
+  const setMemberResponse = (memberName: string, response: string) => {
+    setMemberResponses(prev => ({
+      ...prev,
+      [memberName]: response
+    }));
+  };
+
+  const submitRSVP = async () => {
+    if (!verifiedName) {
+      setMessage('Please verify your name first');
+      setIsError(true);
+      return;
+    }
+
+    setIsLoading(true);
+    setIsError(false);
+
+    try {
+      if (isGroupRSVP) {
+        // Submit group RSVP - send each member as a separate entry
+        const rsvpEntries = groupMembers.map(member => ({
+          name: member.name,
+          attending: memberResponses[member.name],
+          dietary: groupDietary.trim() || 'None'
+        }));
+
+        console.log('RSVP Entries:', rsvpEntries); // Debug log
+
+        // Send each member's RSVP separately
+        for (const entry of rsvpEntries) {
+          const params = new URLSearchParams({
+            action: 'submitRSVP',
+            name: entry.name,
+            attending: entry.attending,
+            dietary: entry.dietary,
+            groupKey: groupMembers[0].groupKey // Include group key for each submission
+          });
+
+          const url = `${SCRIPT_URL}?${params.toString()}`;
+          console.log('Request URL:', url); // Debug log
+
+          const response = await fetch(url);
+          const text = await response.text();
+          console.log('Response text:', text); // Debug log
+
+          try {
+            const data = JSON.parse(text);
+            if (!data.success) {
+              throw new Error(data.message || 'Error submitting RSVP');
+            }
+          } catch (e) {
+            console.error('Error submitting RSVP for:', entry.name, e);
+            throw e;
+          }
+        }
+
+        // If we get here, all RSVPs were successful
+        setMessage('Thank you for your group RSVP!');
+        setShowRSVPForm(false);
+      } else {
+        // Submit individual RSVP
+        const params = new URLSearchParams({
+          action: 'submitRSVP',
+          name: verifiedName,
+          attending,
+          dietary: dietary.trim() || 'None'
+        });
+
+        const response = await fetch(`${SCRIPT_URL}?${params.toString()}`);
+        const text = await response.text();
+        console.log('Response text:', text); // Debug log
+
+        try {
+          const data = JSON.parse(text);
+          if (data.success) {
+            setMessage('Thank you for your RSVP!');
+            setShowRSVPForm(false);
+          } else {
+            setMessage(data.message || 'Error submitting RSVP');
+            setIsError(true);
+          }
+        } catch (e) {
+          // If response is not JSON, check for error text
+          if (text.toLowerCase().includes('error')) {
+            setMessage(text || 'Error submitting RSVP');
+            setIsError(true);
+          } else {
+            setMessage('Thank you for your RSVP!');
+            setShowRSVPForm(false);
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Submission error:', error); // Debug log
+      setMessage('Error submitting RSVP. Please try again.');
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
-    <div className="max-w-xl mx-auto glass-card p-8 rounded-lg shadow-lg">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="font-body">Full Name</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Enter your full name"
-                    className="border-wedding-taupe/30 focus:border-wedding-gold focus:ring-wedding-gold/20"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="font-body">Email Address</FormLabel>
-                <FormControl>
-                  <Input
-                    type="email"
-                    placeholder="Enter your email address"
-                    className="border-wedding-taupe/30 focus:border-wedding-gold focus:ring-wedding-gold/20"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="attending"
-            render={({ field }) => (
-              <FormItem className="space-y-3">
-                <FormLabel className="font-body">Will you be attending?</FormLabel>
-                <FormControl>
-                  <RadioGroup
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    className="flex space-x-4"
-                  >
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="yes" id="attending-yes" />
-                      <Label htmlFor="attending-yes">Joyfully Accepts</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="no" id="attending-no" />
-                      <Label htmlFor="attending-no">Regretfully Declines</Label>
-                    </div>
-                  </RadioGroup>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {attending === "yes" && (
-            <>
-              <FormField
-                control={form.control}
-                name="guestCount"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="font-body">Number of Guests</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger className="border-wedding-taupe/30 focus:border-wedding-gold focus:ring-wedding-gold/20">
-                          <SelectValue placeholder="Select number of guests" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="0">Just me</SelectItem>
-                        <SelectItem value="1">Me + 1 guest</SelectItem>
-                        <SelectItem value="2">Me + 2 guests</SelectItem>
-                        <SelectItem value="3">Me + 3 guests</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
+    <Card className="w-full max-w-md mx-auto">
+      <CardHeader>
+        <CardTitle>Wedding RSVP</CardTitle>
+      </CardHeader>
+      <CardContent>
+        {!showRSVPForm ? (
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <label htmlFor="guestName" className="text-sm font-medium">
+                Please enter your name as it appears on your invitation:
+              </label>
+              <Input
+                id="guestName"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter your name"
               />
-
-              <FormField
-                control={form.control}
-                name="mealPreference"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="font-body">Meal Preference</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger className="border-wedding-taupe/30 focus:border-wedding-gold focus:ring-wedding-gold/20">
-                          <SelectValue placeholder="Select meal preference" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="beef">Beef</SelectItem>
-                        <SelectItem value="chicken">Chicken</SelectItem>
-                        <SelectItem value="fish">Fish</SelectItem>
-                        <SelectItem value="vegetarian">Vegetarian</SelectItem>
-                        <SelectItem value="vegan">Vegan</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="dietaryRestrictions"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="font-body">Dietary Restrictions</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Please list any allergies or dietary restrictions"
-                        className="border-wedding-taupe/30 focus:border-wedding-gold focus:ring-wedding-gold/20"
-                        {...field}
+            </div>
+            <Button 
+              onClick={checkName} 
+              disabled={isLoading}
+              className="w-full"
+            >
+              {isLoading ? 'Verifying...' : 'Verify Name'}
+            </Button>
+          </div>
+        ) : isGroupRSVP ? (
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium">
+                RSVP for group members:
+              </label>
+              <div className="space-y-4">
+                {groupMembers.map((member) => (
+                  <div key={member.name} className="flex items-center justify-between space-x-4">
+                    <Label htmlFor={`toggle-${member.name}`} className="text-sm">
+                      {member.name}
+                    </Label>
+                    <div className="flex items-center space-x-2">
+                      <Label htmlFor={`toggle-${member.name}`} className="text-sm">
+                        {memberResponses[member.name] === 'yes' ? 'Attending' : 'Not Attending'}
+                      </Label>
+                      <Switch
+                        id={`toggle-${member.name}`}
+                        checked={memberResponses[member.name] === 'yes'}
+                        onCheckedChange={(checked) => 
+                          setMemberResponse(member.name, checked ? 'yes' : 'no')
+                        }
                       />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="groupDietary" className="text-sm font-medium">
+                Any Dietary Requirements (Optional):
+              </label>
+              <Input
+                id="groupDietary"
+                value={groupDietary}
+                onChange={(e) => setGroupDietary(e.target.value)}
+                placeholder="Enter any dietary requirements"
               />
-            </>
-          )}
+            </div>
 
-          <FormField
-            control={form.control}
-            name="message"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="font-body">Message to the Couple (Optional)</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="Share your well wishes or any message for the couple"
-                    className="resize-none border-wedding-taupe/30 focus:border-wedding-gold focus:ring-wedding-gold/20"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            <Button 
+              onClick={submitRSVP} 
+              disabled={isLoading}
+              className="w-full"
+            >
+              {isLoading ? 'Submitting...' : 'Submit Group RSVP'}
+            </Button>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium">
+                Will you be attending?
+              </label>
+              <div className="flex items-center justify-between space-x-4">
+                <Label htmlFor="attending-toggle" className="text-sm">
+                  {attending === 'yes' ? 'Attending' : 'Not Attending'}
+                </Label>
+                <Switch
+                  id="attending-toggle"
+                  checked={attending === 'yes'}
+                  onCheckedChange={(checked) => setAttending(checked ? 'yes' : 'no')}
+                />
+              </div>
+            </div>
 
-          <Button 
-            type="submit" 
-            className="w-full bg-wedding-gold hover:bg-wedding-gold/80 text-white border-none"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "Submitting..." : "Submit RSVP"}
-          </Button>
-        </form>
-      </Form>
-    </div>
+            <div className="space-y-2">
+              <label htmlFor="dietary" className="text-sm font-medium">
+                Dietary Requirements (Optional):
+              </label>
+              <Input
+                id="dietary"
+                value={dietary}
+                onChange={(e) => setDietary(e.target.value)}
+                placeholder="Enter any dietary requirements"
+              />
+            </div>
+
+            <Button 
+              onClick={submitRSVP} 
+              disabled={isLoading || !attending}
+              className="w-full"
+            >
+              {isLoading ? 'Submitting...' : 'Submit RSVP'}
+            </Button>
+          </div>
+        )}
+
+        {message && (
+          <Alert className={`mt-4 ${isError ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'}`}>
+            <AlertDescription>{message}</AlertDescription>
+          </Alert>
+        )}
+      </CardContent>
+    </Card>
   );
-};
-
-export default RSVPForm;
+}

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
@@ -36,7 +35,7 @@ const Timeline: React.FC<TimelineProps> = ({ events }) => {
           const isEven = index % 2 === 0;
           
           return (
-            <React.Fragment key={index}>
+            <div key={index}>
               <motion.div
                 initial={{ opacity: 0, x: isEven ? -20 : 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -90,7 +89,7 @@ const Timeline: React.FC<TimelineProps> = ({ events }) => {
                   </div>
                 )}
               </motion.div>
-            </React.Fragment>
+            </div>
           );
         })}
       </div>
