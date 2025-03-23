@@ -14,9 +14,9 @@ const timelineEvents = [
   {
     date: "October 2021",
     title: "Moving In Together",
-    description: "After three years of dating, we decided to take the next step and move into our an apartment together at Yonge & Eglinton.",
+    description: "After three years of dating, we decided to take the next step and move into an apartment together at Yonge & Eglinton.",
     image: "/hannahrob2026/images/gallery/IMG_0265.JPG",  // Path will be correct after setup-gallery.sh runs
-    caption: "Here we are dressed up in our living room before heading out to Hannah's grandparent's anniversary party."  
+    caption: "Here we are dressed up in our living room before heading out to Hannah's grandparents' anniversary party."  
   },
   {
     date: "September 2023",

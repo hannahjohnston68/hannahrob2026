@@ -18,7 +18,7 @@ const RSVP: React.FC = () => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
-        className="min-h-screen bg-wedding-cream pt-24 pb-16"
+        className="min-h-screen bg-wedding-cream pt-24 pb-8"
       >
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
