@@ -1,4 +1,3 @@
-
 import { jsxDEV } from "react/jsx-dev-runtime";
 import { useEffect } from "react";
 import Navbar from "../components/Navbar";
@@ -157,12 +156,12 @@ const Details = () => {
                                 </p>
                               </a>
                             </li>
-                            <li>
-                              Street parking may be available in the surrounding area 
-                              (subject to city parking regulations)
-                            </li>
                           </ul>
                         </div>
+                        <p className="text-sm italic mt-4">
+                          Street parking may be available in the surrounding area 
+                          (subject to city parking regulations)
+                        </p>
                       </div>
                     </div>
                   </div>

@@ -217,10 +217,9 @@ const RSVPForm: React.FC = () => {
         throw new Error("Failed to submit form");
       }
     } catch (error) {
-      toast.error("Something went wrong", {
-        description: "We couldn't submit your RSVP. Please try again later.",
-      });
-      console.error("RSVP submission error:", error);
+      console.error('Submission error:', error);
+      setMessage('Error submitting RSVP. Please try again.');
+      setIsError(true);
     } finally {
       setIsSubmitting(false);
     }
@@ -440,6 +439,4 @@ const RSVPForm: React.FC = () => {
       )}
     </div>
   );
-};
-
-export default RSVPForm;
+}
