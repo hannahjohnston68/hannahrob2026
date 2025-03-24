@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, MapPin, ExternalLink } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
@@ -10,13 +10,15 @@ interface DetailCardProps {
   title: string;
   children: React.ReactNode;
   delay?: number;
+  defaultHoverState?: boolean;  // Add this new prop
 }
 
 const DetailCard: React.FC<DetailCardProps> = ({
   icon,
   title,
   children,
-  delay = 0
+  delay = 0,
+  defaultHoverState = false
 }) => {
   return (
     <div className="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
@@ -29,7 +31,7 @@ const DetailCard: React.FC<DetailCardProps> = ({
       >
         <div className="flex flex-col items-center text-center">
           <div className="w-14 h-14 bg-wedding-pink/10 rounded-full flex items-center justify-center mb-4 shadow-inner border-2 border-wedding-pink">
-            <div className="text-wedding-pink">{icon}</div>
+            <div className="text-wedding-pink transition-colors duration-300 group-hover/date:text-wedding-pink">{icon}</div>
           </div>
           <h3 className="text-xl font-serif mb-3">{title}</h3>
           <div className="text-wedding-charcoal/80 font-body">{children}</div>
@@ -90,18 +92,29 @@ const WeddingDetails: React.FC = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-          <DetailCard icon={<Calendar size={26} />} title="Date & Schedule" delay={0.1}>
-            <button 
-              onClick={handleAddToCalendar}
-              className="mb-2 hover:text-wedding-pink transition-colors duration-300 cursor-pointer inline-flex items-center gap-2 group"
-            >
-              Saturday, September 12, 2026
-              <ExternalLink size={12} className="inline-block opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </button>
-            <p className="mb-2">Ceremony: 10:00 AM</p>
-            <p className="mb-4 text-sm italic">(vows, rings and i do's)</p>
-            <p className="mb-2">Reception: 10:30 AM - 3:00 PM</p>
-            <p className="text-sm italic">(brunch, mimosas, speeches and dancing!)</p>
+          <DetailCard 
+            icon={<Calendar size={26} />} 
+            title="Date & Schedule" 
+            delay={0.1}
+          >
+            <div className="mb-2 inline-flex items-center gap-2 group/date">
+              <button 
+                onClick={handleAddToCalendar}
+                className="cursor-pointer text-wedding-charcoal/80 hover:text-wedding-pink transition-colors duration-300"
+              >
+                Saturday, September 12, 2026
+              </button>
+              <ExternalLink 
+                size={12} 
+                className="inline-block transition-colors duration-300 text-wedding-charcoal/80 group-hover/date:text-wedding-pink"
+              />
+            </div>
+            <div className="text-wedding-charcoal/80">
+              <p className="mb-2">Ceremony: 10:00 AM</p>
+              <p className="mb-4 text-sm italic">(vows, rings and i do's)</p>
+              <p className="mb-2">Reception: 10:30 AM - 3:00 PM</p>
+              <p className="text-sm italic">(brunch, mimosas, speeches and dancing!)</p>
+            </div>
           </DetailCard>
 
           <DetailCard icon={<MapPin size={26} />} title="Venue" delay={0.2}>

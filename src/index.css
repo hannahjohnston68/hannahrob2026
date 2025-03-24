@@ -121,3 +121,12 @@
 .animate-fade-in {
   animation: fade-in 0.2s ease-out forwards;
 }
+
+/* Add this to ensure buttons are visible */
+.glass-card form button[type="submit"] {
+  display: block !important;
+  margin-top: 2rem !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 50 !important;
+}
