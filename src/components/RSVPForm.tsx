@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -44,7 +43,7 @@ const formSchema = z.object({
 type NameValidationFormValues = z.infer<typeof nameValidationSchema>;
 type FormValues = z.infer<typeof formSchema>;
 
-const RSVPForm: React.FC = () => {
+export const RSVPForm: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isValidGuest, setIsValidGuest] = useState(false);
@@ -52,6 +51,7 @@ const RSVPForm: React.FC = () => {
   const [isValidating, setIsValidating] = useState(false);
   const [shake, setShake] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [submissionError, setSubmissionError] = useState<string | null>(null);
 
   const nameForm = useForm<NameValidationFormValues>({
     resolver: zodResolver(nameValidationSchema),
@@ -218,8 +218,7 @@ const RSVPForm: React.FC = () => {
       }
     } catch (error) {
       console.error('Submission error:', error);
-      setMessage('Error submitting RSVP. Please try again.');
-      setIsError(true);
+      setSubmissionError('Error submitting RSVP. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
