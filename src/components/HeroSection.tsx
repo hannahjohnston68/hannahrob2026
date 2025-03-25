@@ -1,9 +1,11 @@
-
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import ImageWithLoader from './ImageWithLoader';
 import { Link } from "react-router-dom";
+
+// Get the base URL from the environment or use an empty string for development
+const baseUrl = import.meta.env.MODE === 'production' ? '/hannahrob2026' : '';
 
 const HeroSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -26,13 +28,18 @@ const HeroSection: React.FC = () => {
   return (
     <div 
       ref={sectionRef} 
-      className="relative h-screen w-full bg-cover bg-center flex items-center justify-center overflow-hidden"
-      style={{
-        backgroundImage: `url(/hannahrob2026/images/gallery/archeo-wedding13.jpg)`,
-        backgroundAttachment: "fixed"
-      }}
+      className="relative h-screen w-full bg-[#94A094] md:bg-transparent bg-cover bg-center flex items-center justify-center overflow-hidden"
     >
-      <div className="absolute inset-0 bg-black/20" />
+      <div 
+        className="absolute inset-0 hidden md:block"
+        style={{
+          backgroundImage: `url(${baseUrl}/images/gallery/archeo-wedding13.jpg)`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: "fixed"
+        }}
+      />
+      <div className="absolute inset-0 bg-black/20 md:block hidden" />
 
       <motion.div 
         initial={{ opacity: 0, scale: 0.9 }} 

@@ -4,16 +4,16 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  base: "/hannahrob2026/",  // This should match your repository name
+  base: mode === 'production' ? '/hannahrob2026/' : '/',
   server: {
     host: "::",
-    port: 8080,
+    port: 3004,
     strictPort: true,
     hmr: {
       protocol: 'ws',
       host: 'localhost',
-      port: 8080,
-      clientPort: 8080
+      port: 3004,
+      clientPort: 3004
     }
   },
   plugins: [

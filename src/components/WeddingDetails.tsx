@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, MapPin, ExternalLink } from 'lucide-react';
@@ -57,14 +56,14 @@ const WeddingDetails: React.FC = () => {
   };
 
   return (
-    <section className="pt-12 pb-4 px-4"> {/* Changed pb-8 to pb-4 */}
+    <section className="pt-2 pb-4 px-4">
       <div className="max-w-6xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-12"
+          className="text-center mb-6"
         >
           {isDetailsPage ? (
             <>
