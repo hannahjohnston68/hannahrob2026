@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import ImageWithLoader from './ImageWithLoader';
@@ -58,11 +57,11 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ images }) => {
   React.useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedImageIndex]); // Add selectedImageIndex as dependency
+  }, [selectedImageIndex]);
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 auto-rows-fr">
         {images.map((image, index) => (
           <motion.div
             key={image.id}
@@ -71,13 +70,13 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ images }) => {
             transition={{ duration: 0.3 }}
             whileHover={{ scale: 1.02 }}
             viewport={{ once: true, margin: "-50px" }}
-            className="overflow-hidden rounded-lg shadow-md cursor-pointer"
+            className="overflow-hidden rounded-lg shadow-md cursor-pointer aspect-[4/3]"
             onClick={() => openLightbox(index)}
           >
             <ImageWithLoader
               src={image.src}
               alt={image.alt}
-              className="w-full h-64 md:h-72 object-cover transition-transform duration-300 hover:scale-110"
+              className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
               loading="lazy"
             />
           </motion.div>

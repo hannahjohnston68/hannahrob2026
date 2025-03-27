@@ -66,12 +66,6 @@ const HeroSection: React.FC = () => {
             animate={{ opacity: 1 }} 
             transition={{ delay: 1, duration: 1 }}
           >
-            <Link
-              to="/rsvp"
-              className="inline-block px-8 py-3 border-2 border-wedding-pink bg-wedding-pink/10 text-wedding-pink hover:bg-wedding-pink hover:text-white transition-colors duration-300 uppercase tracking-widest text-sm font-body"
-            >
-              RSVP Now
-            </Link>
           </motion.div>
         </motion.div>
       </motion.div>

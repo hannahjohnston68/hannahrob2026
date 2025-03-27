@@ -4,7 +4,6 @@ import App from './App.tsx'
 import './index.css'
 import Index from './pages/Index'
 import Gallery from './pages/Gallery'
-import RSVP from './pages/RSVP'
 import Details from './pages/Details'
 import NotFound from './pages/NotFound'
 
@@ -26,10 +25,6 @@ const routes = [
       {
         path: 'gallery',
         element: <Gallery />
-      },
-      {
-        path: 'rsvp',
-        element: <RSVP />
       },
       {
         path: 'details',
