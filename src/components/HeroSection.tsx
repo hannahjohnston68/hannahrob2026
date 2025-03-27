@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import ImageWithLoader from './ImageWithLoader';
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 // Get the base URL from the environment or use an empty string for development
 const baseUrl = import.meta.env.MODE === 'production' ? '/hannahrob2026' : '';
@@ -65,7 +66,15 @@ const HeroSection: React.FC = () => {
             initial={{ opacity: 0 }} 
             animate={{ opacity: 1 }} 
             transition={{ delay: 1, duration: 1 }}
+            className="mt-4"
           >
+            <Link to="/rsvp">
+              <Button 
+                className="bg-wedding-pink hover:bg-wedding-pink/90 text-white font-serif px-12 py-6 text-lg rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                RSVP
+              </Button>
+            </Link>
           </motion.div>
         </motion.div>
       </motion.div>

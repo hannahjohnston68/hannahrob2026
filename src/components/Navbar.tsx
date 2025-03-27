@@ -105,6 +105,16 @@ const Navbar: React.FC = () => {
                     >
                       Gallery
                     </NavLink>
+                    <NavLink 
+                      to="/rsvp" 
+                      className={({isActive}) => cn(
+                        "py-2 px-4 w-full transition-colors duration-200",
+                        isActive ? "text-wedding-pink" : "text-wedding-charcoal hover:text-wedding-pink"
+                      )}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      RSVP
+                    </NavLink>
                   </div>
                 </div>
               </>
@@ -113,6 +123,7 @@ const Navbar: React.FC = () => {
                 <NavLink to="/" className={({isActive}) => navLinkClasses(isActive, isScrolled)}>Home</NavLink>
                 <NavLink to="/details" className={({isActive}) => navLinkClasses(isActive, isScrolled)}>Details</NavLink>
                 <NavLink to="/gallery" className={({isActive}) => navLinkClasses(isActive, isScrolled)}>Gallery</NavLink>
+                <NavLink to="/rsvp" className={({isActive}) => navLinkClasses(isActive, isScrolled)}>RSVP</NavLink>
               </nav>
             )
           )}

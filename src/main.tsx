@@ -5,6 +5,7 @@ import './index.css'
 import Index from './pages/Index'
 import Gallery from './pages/Gallery'
 import Details from './pages/Details'
+import RSVP from './pages/RSVP.tsx'
 import NotFound from './pages/NotFound'
 
 console.log('Environment:', {
@@ -29,6 +30,10 @@ const routes = [
       {
         path: 'details',
         element: <Details />
+      },
+      {
+        path: 'rsvp',
+        element: <RSVP />
       },
       {
         path: '*',
