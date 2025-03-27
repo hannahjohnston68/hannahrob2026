@@ -3,6 +3,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import RSVPForm from "@/components/RSVPForm";
 import { motion } from 'framer-motion';
+import { RSVPResponses } from '../components/RSVPResponses';
+import { TestRSVP } from '../components/TestRSVP';
 
 const RSVPPage = () => {
   useEffect(() => {
@@ -40,6 +42,16 @@ const RSVPPage = () => {
           >
             <RSVPForm />
           </motion.div>
+
+          {/* Admin section - you might want to protect this with authentication */}
+          <div className="mt-16">
+            <RSVPResponses />
+          </div>
+
+          {/* Test section - remove this after testing */}
+          <div className="mt-8">
+            <TestRSVP />
+          </div>
         </div>
       </main>
       <Footer />

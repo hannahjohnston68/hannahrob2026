@@ -2,9 +2,10 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
+import { submitRSVP } from "@/lib/rsvpService";
 
 interface FormData {
   name: string;
@@ -26,22 +27,25 @@ export default function RSVPForm() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setSubmitError(null); // Clear any previous errors
   };
 
   const handleAttendingChange = (value: string) => {
     setFormData({ ...formData, attending: value });
+    setSubmitError(null); // Clear any previous errors
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError(null);
 
     try {
-      // Temporarily just log the data
-      console.log('RSVP Submitted:', formData);
+      await submitRSVP(formData);
       // Show success message
       alert('Thank you for your RSVP! We look forward to celebrating with you.');
       // Reset form
@@ -55,7 +59,7 @@ export default function RSVPForm() {
       });
     } catch (error) {
       console.error('Error submitting RSVP:', error);
-      alert('There was an error submitting your RSVP. Please try again.');
+      setSubmitError('There was an error submitting your RSVP. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -63,9 +67,6 @@ export default function RSVPForm() {
 
   return (
     <Card className="max-w-lg mx-auto mt-10 p-5 shadow-lg bg-white/90 backdrop-blur-sm border-wedding-pink/20">
-      <CardHeader>
-        <CardTitle className="text-center text-2xl font-serif text-wedding-charcoal">RSVP to Hannah & Rob's Wedding</CardTitle>
-      </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
@@ -150,6 +151,12 @@ export default function RSVPForm() {
                 />
               </div>
             </>
+          )}
+
+          {submitError && (
+            <div className="text-red-500 text-sm text-center">
+              {submitError}
+            </div>
           )}
 
           <Button 
