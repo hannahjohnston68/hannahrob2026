@@ -1,4 +1,4 @@
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp } from '@firebase/firestore';
 import { db } from './firebase';
 
 // Replace with your actual web app URL from Google Apps Script deployment
