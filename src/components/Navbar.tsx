@@ -41,7 +41,8 @@ const Navbar: React.FC = () => {
       "fixed top-0 left-0 right-0 z-[100] transition-all duration-500 font-sans", 
       isScrolled 
         ? "bg-white/40 backdrop-blur-lg shadow-sm py-2"
-        : "bg-transparent py-4"
+        : "bg-transparent py-4",
+      "lightbox-open:hidden"
     )}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -69,7 +70,8 @@ const Navbar: React.FC = () => {
                   className={cn(
                     "absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300 transform",
                     isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none",
-                    "z-[90]"
+                    "z-[90]",
+                    "lightbox-open:hidden"
                   )}
                 >
                   <div className="flex flex-col space-y-2 px-4 py-4">

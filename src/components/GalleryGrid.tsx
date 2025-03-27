@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ImageWithLoader from './ImageWithLoader';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
@@ -18,6 +18,18 @@ interface GalleryGridProps {
 
 const GalleryGrid: React.FC<GalleryGridProps> = ({ images }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+
+  // Add effect to handle navbar visibility
+  useEffect(() => {
+    if (selectedImageIndex !== null) {
+      document.body.classList.add('lightbox-open');
+    } else {
+      document.body.classList.remove('lightbox-open');
+    }
+    return () => {
+      document.body.classList.remove('lightbox-open');
+    };
+  }, [selectedImageIndex]);
 
   const openLightbox = (index: number) => {
     setSelectedImageIndex(index);
@@ -84,7 +96,7 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ images }) => {
       </div>
 
       <Dialog open={selectedImageIndex !== null} onOpenChange={() => closeLightbox()}>
-        <DialogContent className="max-w-[95vw] max-h-[95vh] bg-black/90 border-none p-0 overflow-hidden">
+        <DialogContent className="max-w-[95vw] max-h-[95vh] bg-black/90 border-none p-0 overflow-hidden z-[9999]">
           <button
             onClick={closeLightbox}
             className="absolute right-2 top-2 z-50 rounded-full bg-black/20 p-2 text-white hover:bg-black/40 transition-colors"
