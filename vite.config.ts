@@ -26,12 +26,9 @@ export default defineConfig(async ({ mode }) => {
       componentTagger(),
     ].filter(Boolean),
     resolve: {
-      alias: [
-        {
-          find: '@',
-          replacement: path.resolve(__dirname, 'src')
-        }
-      ]
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+      },
     },
     build: {
       outDir: 'dist',
@@ -47,5 +44,8 @@ export default defineConfig(async ({ mode }) => {
       setupFiles: ['./src/test/setup.ts'],
       include: ['src/**/*.{test,spec}.{js,jsx,ts,tsx}'],
     },
+    optimizeDeps: {
+      include: ['@firebase/app', '@firebase/firestore']
+    }
   };
 });

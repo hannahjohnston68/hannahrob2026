@@ -5,6 +5,7 @@ import RSVPForm from "@/components/RSVPForm";
 import { motion } from 'framer-motion';
 import { RSVPResponses } from '../components/RSVPResponses';
 import { TestRSVP } from '../components/TestRSVP';
+import TestGuests from "@/components/TestGuests";
 
 const RSVPPage = () => {
   useEffect(() => {
@@ -39,6 +40,14 @@ const RSVPPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <TestGuests />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
             <RSVPForm />
           </motion.div>
