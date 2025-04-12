@@ -1,45 +1,61 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
-interface ImageWithLoaderProps extends React.ImgHTMLAttributes<HTMLImageElement> {
-  placeholder?: string;
+interface ImageWithLoaderProps {
+  src: string;
+  alt: string;
+  className?: string;
+  priority?: boolean;
 }
 
 const ImageWithLoader: React.FC<ImageWithLoaderProps> = ({ 
   src, 
-  alt = "", 
-  className, 
-  placeholder = "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==", // Using a tiny transparent GIF
-  ...rest 
+  alt, 
+  className,
+  priority = false
 }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  useEffect(() => {
+    const img = new Image();
+    img.src = src;
+    
+    img.onload = () => {
+      setIsLoading(false);
+    };
+    
+    img.onerror = () => {
+      setError(true);
+      setIsLoading(false);
+    };
+
+    return () => {
+      img.onload = null;
+      img.onerror = null;
+    };
+  }, [src]);
+
   return (
-    <div className="relative w-full h-full">
-      {!isLoaded && (
-        <div className="absolute inset-0 bg-gray-200 animate-pulse" />
+    <div className={cn("relative overflow-hidden", className)}>
+      {isLoading && (
+        <div className="absolute inset-0 bg-wedding-cream/50 animate-pulse" />
       )}
-      <img
-        src={error ? placeholder : src}
-        alt={alt}
-        className={cn(
-          "w-full h-full object-cover transition-all duration-300",
-          !isLoaded && "opacity-0",
-          isLoaded && "opacity-100",
-          className
-        )}
-        onLoad={() => {
-          setIsLoaded(true);
-          setError(false);
-        }}
-        onError={() => {
-          setError(true);
-          setIsLoaded(true);
-        }}
-        {...rest}
-      />
+      {error ? (
+        <div className="absolute inset-0 flex items-center justify-center bg-wedding-cream/50">
+          <span className="text-wedding-charcoal/50">Image not available</span>
+        </div>
+      ) : (
+        <img
+          src={src}
+          alt={alt}
+          loading={priority ? "eager" : "lazy"}
+          className={cn(
+            "w-full h-full object-cover transition-opacity duration-300",
+            isLoading ? "opacity-0" : "opacity-100"
+          )}
+        />
+      )}
     </div>
   );
 };

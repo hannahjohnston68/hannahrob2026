@@ -23,7 +23,6 @@ const Index = () => {
       <main className="relative">
         <HeroSection />
         <OurStory />
-        <div className="w-full h-px bg-wedding-charcoal/10 my-12"></div>
         <WeddingDetails />
       </main>
       <Footer />

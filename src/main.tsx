@@ -4,41 +4,41 @@ import App from './App.tsx'
 import './index.css'
 import Index from './pages/Index'
 import Details from './pages/Details'
+import WeddingParty from './pages/Registry'
 import NotFound from './pages/NotFound'
 
-console.log('Environment:', {
-  isDev: import.meta.env.DEV,
-  mode: import.meta.env.MODE,
-  base: import.meta.env.BASE_URL
-});
+// Performance optimization: Only log in development
+if (import.meta.env.DEV) {
+  console.log('Environment:', {
+    isDev: import.meta.env.DEV,
+    mode: import.meta.env.MODE,
+    base: import.meta.env.BASE_URL
+  });
+}
+
+const basename = import.meta.env.MODE === 'production' ? '/hannahrob2026' : '';
 
 const routes = [
   {
     path: '/',
-    element: <App />,
-    children: [
-      {
-        path: '',
-        element: <Index />
-      },
-      {
-        path: 'details',
-        element: <Details />
-      },
-      {
-        path: 'rsvp',
-        element: <Navigate to="https://withjoy.com/hannah-and-rob-sep-26/rsvp" replace />
-      },
-      {
-        path: '*',
-        element: <NotFound />
-      }
-    ]
+    element: <Index />,
+    errorElement: <NotFound />
+  },
+  {
+    path: '/details',
+    element: <Details />,
+    errorElement: <NotFound />
+  },
+  {
+    path: '/wedding-party',
+    element: <WeddingParty />,
+    errorElement: <NotFound />
+  },
+  {
+    path: '*',
+    element: <Navigate to="/" replace />
   }
-]
-
-const basename = import.meta.env.MODE === 'production' ? '/hannahrob2026/' : '/';
-console.log('Using basename:', basename);
+];
 
 const router = createBrowserRouter(routes, {
   basename,
@@ -46,8 +46,12 @@ const router = createBrowserRouter(routes, {
     v7_startTransition: true,
     v7_relativeSplatPath: true
   }
-})
+});
 
-createRoot(document.getElementById("root")!).render(
-  <RouterProvider router={router} />
-);
+// Performance optimization: Use requestIdleCallback for non-critical rendering
+const root = createRoot(document.getElementById("root")!);
+requestIdleCallback(() => {
+  root.render(
+    <RouterProvider router={router} />
+  );
+});

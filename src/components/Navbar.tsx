@@ -95,6 +95,16 @@ const Navbar: React.FC = () => {
                     >
                       Details
                     </NavLink>
+                    <NavLink 
+                      to="/wedding-party" 
+                      className={({isActive}) => cn(
+                        "py-2 px-4 w-full transition-colors duration-200",
+                        isActive ? "text-wedding-pink" : "text-wedding-charcoal hover:text-wedding-pink"
+                      )}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Wedding Party
+                    </NavLink>
                     <a 
                       href="https://withjoy.com/hannah-and-rob-sep-26/rsvp"
                       target="_blank"
@@ -111,6 +121,7 @@ const Navbar: React.FC = () => {
               <nav className="flex space-x-6 sm:space-x-8">
                 <NavLink to="/" className={({isActive}) => navLinkClasses(isActive, isScrolled)}>Home</NavLink>
                 <NavLink to="/details" className={({isActive}) => navLinkClasses(isActive, isScrolled)}>Details</NavLink>
+                <NavLink to="/wedding-party" className={({isActive}) => navLinkClasses(isActive, isScrolled)}>Wedding Party</NavLink>
                 <a 
                   href="https://withjoy.com/hannah-and-rob-sep-26/rsvp"
                   target="_blank"
