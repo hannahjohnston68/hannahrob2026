@@ -27,11 +27,11 @@ const HeroSection: React.FC = () => {
   }, []);
 
   return (
-    <div 
-      ref={sectionRef} 
+    <div
+      ref={sectionRef}
       className="relative h-screen w-full bg-[#94A094] md:bg-transparent bg-cover bg-center flex items-center justify-center overflow-hidden"
     >
-      <div 
+      <div
         className="absolute inset-0 hidden md:block"
         style={{
           backgroundImage: `url(${baseUrl}/images/gallery/archeo-wedding13.jpg)`,
@@ -42,18 +42,18 @@ const HeroSection: React.FC = () => {
       />
       <div className="absolute inset-0 bg-black/20 md:block hidden" />
 
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.9 }} 
-        animate={{ opacity: 1, scale: 1 }} 
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
         className={cn(
           "relative z-10 text-center px-12 py-12 max-w-4xl mx-auto",
           "glass-card rounded-lg bg-white/60 shadow-xl backdrop-blur-sm"
         )}
       >
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
-          animate={{ opacity: 1, y: 0 }} 
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
           <p className="font-body uppercase tracking-[0.3em] text-sm mb-4 text-wedding-charcoal/80">We're Getting Married</p>
@@ -62,19 +62,19 @@ const HeroSection: React.FC = () => {
           </h1>
           <p className="font-body uppercase tracking-[0.15em] text-lg mb-4 text-wedding-charcoal">SEPTEMBER 12, 2026 • Toronto, Ontario</p>
           <div className="h-px w-24 bg-wedding-gold mx-auto mb-4" />
-          <motion.div 
-            initial={{ opacity: 0 }} 
-            animate={{ opacity: 1 }} 
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 1 }}
             className="mt-4"
           >
-            <a 
+            <a
               href="https://withjoy.com/hannah-and-rob-sep-26/rsvp"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button 
-                className="bg-wedding-pink hover:bg-wedding-pink/90 text-white font-serif px-12 py-6 text-lg rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+              <Button
+                className="bg-wedding-pink hover:bg-[#a25566] text-white font-serif px-12 py-6 text-lg rounded-full shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.1)] hover:-translate-y-1 hover:-translate-x-1 transition-all duration-300"
               >
                 RSVP
               </Button>

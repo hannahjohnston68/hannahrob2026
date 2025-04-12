@@ -145,7 +145,7 @@ const WeddingParty = () => {
                   className="w-full sm:w-auto"
                 >
                   <Button
-                    className="w-full sm:w-auto bg-wedding-pink hover:bg-wedding-pink/90 text-white font-serif px-12 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                    className="w-full sm:w-auto bg-wedding-pink hover:bg-[#a25566] text-white font-serif px-12 py-6 text-lg rounded-full shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.1)] hover:-translate-y-1 hover:-translate-x-1 transition-all duration-300"
                   >
                     RSVP NOW
                   </Button>
@@ -154,7 +154,7 @@ const WeddingParty = () => {
                 <Link to="/details" className="w-full sm:w-auto">
                   <Button
                     variant="outline"
-                    className="w-full sm:w-auto border-2 border-wedding-charcoal hover:border-wedding-charcoal/90 text-wedding-charcoal hover:text-wedding-charcoal/90 font-serif px-12 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 bg-white/90"
+                    className="w-full sm:w-auto border-2 border-wedding-charcoal text-wedding-charcoal font-serif px-12 py-6 text-lg rounded-full bg-white/90 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.1)] hover:-translate-y-1 hover:-translate-x-1 transition-all duration-300"
                   >
                     SEE EVENT DETAILS
                   </Button>

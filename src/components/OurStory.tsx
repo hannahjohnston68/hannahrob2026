@@ -19,7 +19,7 @@ const timelineEvents = [
   {
     description: "After three years of dating, we moved into an apartment at Yonge & Eglinton, a neighbourhood dear to us since Rob lived there when we first got together. Revisiting old favourites like the local comedy club, our go-to brunch spot, and peaceful walks in Sherwood Park has made our home feel even more special.",
     image: `${baseUrl}/images/gallery/IMG_0265.JPG`,
-    caption: "In October 2021, after three years of dating, we moved into an apartment at Yonge & Eglinton, a neighbourhood dear to us since Rob lived there when we first got together. Revisiting old favourites like the local comedy club, our go-to brunch spot, and peaceful walks in Sherwood Park has made our home feel even more special."  
+    caption: "In October 2021, after three years of dating, we moved into an apartment at Yonge & Eglinton, a neighbourhood dear to us since Rob lived there when we first got together. Revisiting old favourites like the local comedy club, our go-to brunch spot, and peaceful walks in Sherwood Park has made our home feel even more special."
   },
   {
     description: "During these years, Hannah completed her Master's degree and transitioned to working in software development, while Rob pursued his dream of becoming a veterinary technician.",
@@ -47,7 +47,7 @@ const OurStory: React.FC = () => {
   return (
     <section id="our-story" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -58,7 +58,7 @@ const OurStory: React.FC = () => {
           <div className="h-px w-20 bg-wedding-gold mx-auto mb-6"></div>
           <p className="text-lg max-w-3xl mx-auto">We've been together for seven amazing years, and looking back, it's wonderful to see how far we've come.</p>
         </motion.div>
-        
+
         <Timeline events={timelineEvents} />
       </div>
     </section>

@@ -23,7 +23,7 @@ const DetailCard: React.FC<DetailCardProps> = ({
 }) => {
   return (
     <div className="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay }}
@@ -55,7 +55,7 @@ const WeddingDetails: React.FC = () => {
     };
 
     const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.text)}&dates=${event.dates}&details=${encodeURIComponent(event.details)}&location=${encodeURIComponent(event.location)}`;
-    
+
     window.open(googleCalendarUrl, '_blank');
   };
 
@@ -63,7 +63,7 @@ const WeddingDetails: React.FC = () => {
     return (
       <section className="pt-2 pb-4 px-4">
         <div className="max-w-6xl mx-auto">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -78,20 +78,20 @@ const WeddingDetails: React.FC = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-            <DetailCard 
-              icon={<Calendar size={26} />} 
-              title="Date & Schedule" 
+            <DetailCard
+              icon={<Calendar size={26} />}
+              title="Date & Schedule"
               delay={0.1}
             >
               <div className="mb-2 inline-flex items-center gap-2 group/date">
-                <button 
+                <button
                   onClick={handleAddToCalendar}
                   className="cursor-pointer text-wedding-charcoal/80 hover:text-wedding-pink transition-colors duration-300"
                 >
                   Saturday, September 12, 2026
                 </button>
-                <ExternalLink 
-                  size={12} 
+                <ExternalLink
+                  size={12}
                   className="inline-block transition-colors duration-300 text-wedding-charcoal/80 group-hover/date:text-wedding-pink"
                 />
               </div>
@@ -107,10 +107,10 @@ const WeddingDetails: React.FC = () => {
               <p className="mb-2">Archeo</p>
               <p className="mb-2">The Distillery Historic District</p>
               <p>31 Trinity St, Toronto, ON M5A 3C4</p>
-              <a 
-                href="https://www.google.com/maps/search/?api=1&query=Archeo+31+Trinity+St+Toronto+ON+M5A+3C4" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Archeo+31+Trinity+St+Toronto+ON+M5A+3C4"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-wedding-pink/10 text-wedding-pink border-2 border-wedding-pink rounded-md hover:bg-wedding-pink hover:text-white transition-colors duration-300"
               >
                 View Map <ExternalLink size={16} />
@@ -142,7 +142,7 @@ const WeddingDetails: React.FC = () => {
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -150,29 +150,29 @@ const WeddingDetails: React.FC = () => {
           className="text-left pl-0 sm:pl-8 pt-8 pb-32 max-w-xl"
         >
           <h2 className="font-serif text-4xl md:text-5xl mb-6 text-white">Join Us</h2>
-          
+
           <p className="text-lg text-white/90 mb-8">
             I hope you've RSVP'd by now. If not please do so ASAP so we can make sure you have a seat. Or else you're coming with your own chair and sandwich. As always, please reach out if you have questions or concerns.
           </p>
 
           <div className="flex flex-col sm:flex-row items-start gap-4 mb-2">
-            <a 
+            <a
               href="https://withjoy.com/hannah-and-rob-sep-26/rsvp"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto"
             >
-              <Button 
-                className="w-full sm:w-auto bg-wedding-pink hover:bg-wedding-pink/90 text-white font-serif px-12 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              <Button
+                className="w-full sm:w-auto bg-wedding-pink hover:bg-[#a25566] text-white font-serif px-12 py-6 text-lg rounded-full shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.1)] hover:-translate-y-1 hover:-translate-x-1 transition-all duration-300"
               >
                 RSVP NOW
               </Button>
             </a>
-            
+
             <Link to="/details" className="w-full sm:w-auto">
-              <Button 
+              <Button
                 variant="outline"
-                className="w-full sm:w-auto border-2 border-wedding-charcoal hover:border-wedding-charcoal/90 text-wedding-charcoal hover:text-wedding-charcoal/90 font-serif px-12 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 bg-white/90"
+                className="w-full sm:w-auto border-2 border-wedding-charcoal text-wedding-charcoal font-serif px-12 py-6 text-lg rounded-full bg-white/90 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.1)] hover:-translate-y-1 hover:-translate-x-1 transition-all duration-300"
               >
                 SEE EVENT DETAILS
               </Button>
