@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
 import OurStory from '@/components/OurStory';
@@ -24,6 +23,7 @@ const Index = () => {
       <main className="relative">
         <HeroSection />
         <OurStory />
+        <div className="w-full h-px bg-wedding-charcoal/10 my-12"></div>
         <WeddingDetails />
       </main>
       <Footer />
