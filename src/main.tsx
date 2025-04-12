@@ -1,11 +1,9 @@
 import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 import App from './App.tsx'
 import './index.css'
 import Index from './pages/Index'
-import Gallery from './pages/Gallery'
 import Details from './pages/Details'
-import RSVP from './pages/RSVP.tsx'
 import NotFound from './pages/NotFound'
 
 console.log('Environment:', {
@@ -24,16 +22,12 @@ const routes = [
         element: <Index />
       },
       {
-        path: 'gallery',
-        element: <Gallery />
-      },
-      {
         path: 'details',
         element: <Details />
       },
       {
         path: 'rsvp',
-        element: <RSVP />
+        element: <Navigate to="https://withjoy.com/hannah-and-rob-sep-26/rsvp" replace />
       },
       {
         path: '*',

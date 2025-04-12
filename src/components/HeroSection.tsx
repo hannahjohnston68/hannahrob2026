@@ -68,13 +68,17 @@ const HeroSection: React.FC = () => {
             transition={{ delay: 1, duration: 1 }}
             className="mt-4"
           >
-            <Link to="/rsvp">
+            <a 
+              href="https://withjoy.com/hannah-and-rob-sep-26/rsvp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button 
                 className="bg-wedding-pink hover:bg-wedding-pink/90 text-white font-serif px-12 py-6 text-lg rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 RSVP
               </Button>
-            </Link>
+            </a>
           </motion.div>
         </motion.div>
       </motion.div>

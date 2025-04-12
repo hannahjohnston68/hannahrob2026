@@ -95,26 +95,15 @@ const Navbar: React.FC = () => {
                     >
                       Details
                     </NavLink>
-                    <NavLink 
-                      to="/gallery" 
-                      className={({isActive}) => cn(
-                        "py-2 px-4 w-full transition-colors duration-200",
-                        isActive ? "text-wedding-pink" : "text-wedding-charcoal hover:text-wedding-pink"
-                      )}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      Gallery
-                    </NavLink>
-                    <NavLink 
-                      to="/rsvp" 
-                      className={({isActive}) => cn(
-                        "py-2 px-4 w-full transition-colors duration-200",
-                        isActive ? "text-wedding-pink" : "text-wedding-charcoal hover:text-wedding-pink"
-                      )}
+                    <a 
+                      href="https://withjoy.com/hannah-and-rob-sep-26/rsvp"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="py-2 px-4 w-full transition-colors duration-200 text-wedding-charcoal hover:text-wedding-pink"
                       onClick={() => setIsOpen(false)}
                     >
                       RSVP
-                    </NavLink>
+                    </a>
                   </div>
                 </div>
               </>
@@ -122,8 +111,19 @@ const Navbar: React.FC = () => {
               <nav className="flex space-x-6 sm:space-x-8">
                 <NavLink to="/" className={({isActive}) => navLinkClasses(isActive, isScrolled)}>Home</NavLink>
                 <NavLink to="/details" className={({isActive}) => navLinkClasses(isActive, isScrolled)}>Details</NavLink>
-                <NavLink to="/gallery" className={({isActive}) => navLinkClasses(isActive, isScrolled)}>Gallery</NavLink>
-                <NavLink to="/rsvp" className={({isActive}) => navLinkClasses(isActive, isScrolled)}>RSVP</NavLink>
+                <a 
+                  href="https://withjoy.com/hannah-and-rob-sep-26/rsvp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(
+                    "relative px-3 py-2 text-sm tracking-wide transition-all duration-300 font-body uppercase",
+                    isScrolled || !isHomePage
+                      ? "text-wedding-charcoal hover:text-wedding-pink after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-wedding-pink after:transform after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100"
+                      : "text-wedding-cream hover:text-wedding-pink after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-wedding-pink after:transform after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100"
+                  )}
+                >
+                  RSVP
+                </a>
               </nav>
             )
           )}
