@@ -56,7 +56,7 @@ const HeroSection: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
-          <p className="font-body uppercase tracking-[0.3em] text-sm mb-4 text-wedding-charcoal/80">We're Getting Married</p>
+          <p className="font-body uppercase tracking-[0.3em] text-sm mb-4 text-wedding-charcoal/80">We're Getting Married!</p>
           <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl mb-6 text-wedding-charcoal leading-tight">
             Hannah <span className="font-normal text-wedding-pink">&</span> Rob
           </h1>

@@ -108,26 +108,17 @@ export const AnimatedWeddingParty = ({
                   className="absolute inset-0 origin-bottom p-4"
                   style={{ backgroundColor: 'transparent' }}
                 >
-                  <div className="relative w-full h-full bg-wedding-pink rounded-2xl overflow-hidden">
+                  <div className="relative w-full h-full bg-wedding-pink rounded-2xl">
                     <img
                       src={member.src}
                       alt={member.name}
-                      className={`h-full w-full object-cover rounded-2xl shadow-xl grayscale contrast-110 brightness-105 ${
-                        member.src.includes('camille') ? 'object-[5%_20%]' :
-                        member.src.includes('joanne') ? 'object-[40%_20%]' :
-                        member.src.includes('jim') ? 'object-[45%_30%]' :
-                        member.src.includes('patrick-removebg-preview') ? 'object-[40%_25%]' :
-                        member.src.includes('charlie') ? 'object-[55%_30%]' :
-                        member.src.includes('caitlin') ? 'object-[45%_25%]' :
-                        member.src.includes('kayman') ? 'object-[60%_20%]' :
-                        member.src.includes('dad') ? 'object-[45%_30%]' :
-                        member.src.includes('hannah+mum') ? 'object-[55%_25%]' : 'object-center'
+                      className={`h-full w-full object-cover rounded-2xl shadow-xl grayscale contrast-125 brightness-110 ${
+                        member.src.includes('camille') ? 'object-[center_20%]' :
+                        'object-center'
                       }`}
                       style={{
                         border: '8px solid white',
                         boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-                        objectFit: 'cover',
-                        imageRendering: 'high-quality'
                       }}
                     />
                   </div>

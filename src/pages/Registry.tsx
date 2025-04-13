@@ -11,15 +11,15 @@ const baseUrl = import.meta.env.MODE === 'production' ? '/hannahrob2026' : '';
 
 const weddingPartyMembers = [
   {
-    name: "Hannah with her Dad",
+    name: "David",
     role: "",
-    quote: "A father's love and guidance has been a constant source of strength and support throughout my life.",
+    quote: "Father of the bride and winner of countless scrabbles games.",
     src: "/images/family/dad.png",
   },
   {
-    name: "Hannah with her Mom",
+    name: "Alison",
     role: "",
-    quote: "A mother's love knows no bounds. Thank you for being my rock and my inspiration.",
+    quote: "Mother of the bride and master of the sun salutation.",
     src: "/images/family/hannah+mum.png",
   },
   {
@@ -37,31 +37,31 @@ const weddingPartyMembers = [
   {
     name: "Rob with Patrick",
     role: "",
-    quote: "Brothers by blood, friends by choice. Thank you for all the memories and adventures.",
+    quote: "Brother of the groom and ready to challenge you to Mario Kart at the drop of a hat.",
     src: "/images/family/patrick-removebg-preview.png",
   },
   {
-    name: "Hannah with Charlie",
+    name: "Charlie",
     role: "",
-    quote: "A special bond that only siblings share. Thank you for being my partner in crime.",
+    quote: "Brother of the bride and definitely has cooler music taste than you.",
     src: "/images/family/charlie.png",
   },
   {
     name: "Rob with Kayman",
     role: "",
-    quote: "From university days to life's biggest moments, thank you for being an incredible friend and standing by my side.",
+    quote: "Best man and ready to take you tree top trekking.",
     src: "/images/friends/kayman.png",
   },
   {
     name: "Hannah with Caitlin",
     role: "",
-    quote: "A friendship that has grown deeper with every passing year. Thank you for being my constant support and confidante.",
+    quote: "Maid of honour and visits the Gems & Minerals section of the ROM more than you'd think.",
     src: "/images/friends/caitlin.png",
   },
   {
     name: "Camille",
     role: "",
-    quote: "Bridesmaid and beloved bird mom.",
+    quote: "Bridesmaid and bird enthusiast. California girl.",
     src: "/images/friends/camille.png",
   }
 ];
