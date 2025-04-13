@@ -61,62 +61,62 @@ const WeddingDetails: React.FC = () => {
 
   if (isDetailsPage) {
     return (
-      <section className="pt-2 pb-4 px-4">
+      <section className="pt-12 pb-4 px-4">
         <div className="max-w-6xl mx-auto">
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true, margin: "-100px" }}
-            className="text-center mb-6"
+            className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-8 md:p-12 mb-12 max-w-4xl mx-auto"
           >
-            <h2 className="font-serif text-3xl md:text-4xl mb-4">Wedding Details</h2>
-            <div className="h-px w-20 bg-wedding-pink mx-auto mb-6"></div>
-            <p className="max-w-2xl mx-auto text-wedding-charcoal/80">
-              We are looking forward to celebrating our special day with you! Here are all the essential details.
-            </p>
-          </motion.div>
+            <h2 className="font-serif text-4xl md:text-5xl italic text-center mb-4">The Wedding</h2>
+            <div className="h-px w-32 bg-wedding-pink mx-auto mb-10"></div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-            <DetailCard
-              icon={<Calendar size={26} />}
-              title="Date & Schedule"
-              delay={0.1}
-            >
-              <div className="mb-2 inline-flex items-center gap-2 group/date">
+            <div className="grid grid-cols-1 md:grid-cols-[150px_1fr] gap-y-6 gap-x-8 text-wedding-charcoal/80">
+              <div className="font-serif text-wedding-charcoal uppercase">DATE</div>
+              <div className="flex items-center gap-2">
+                <span>Saturday, September 12, 2026</span>
                 <button
                   onClick={handleAddToCalendar}
-                  className="cursor-pointer text-wedding-charcoal/80 hover:text-wedding-pink transition-colors duration-300"
+                  className="cursor-pointer text-wedding-charcoal/60 hover:text-wedding-pink transition-colors duration-300"
                 >
-                  Saturday, September 12, 2026
+                  <ExternalLink size={14} />
                 </button>
-                <ExternalLink
-                  size={12}
-                  className="inline-block transition-colors duration-300 text-wedding-charcoal/80 group-hover/date:text-wedding-pink"
-                />
               </div>
-              <div className="text-wedding-charcoal/80">
-                <p className="mb-2">Ceremony: 10:00 AM</p>
-                <p className="mb-4 text-sm italic">(vows, rings and i do's)</p>
-                <p className="mb-2">Reception: 10:30 AM - 3:00 PM</p>
-                <p className="text-sm italic">(brunch, mimosas, speeches and dancing!)</p>
-              </div>
-            </DetailCard>
 
-            <DetailCard icon={<MapPin size={26} />} title="Venue" delay={0.2}>
-              <p className="mb-2">Archeo</p>
-              <p className="mb-2">The Distillery Historic District</p>
-              <p>31 Trinity St, Toronto, ON M5A 3C4</p>
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=Archeo+31+Trinity+St+Toronto+ON+M5A+3C4"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-wedding-pink/10 text-wedding-pink border-2 border-wedding-pink rounded-md hover:bg-wedding-pink hover:text-white transition-colors duration-300"
-              >
-                View Map <ExternalLink size={16} />
-              </a>
-            </DetailCard>
-          </div>
+              <div className="font-serif text-wedding-charcoal uppercase">TIME</div>
+              <div>
+                <div>Ceremony: 10:00 AM</div>
+                <div>Reception: 10:30 AM - 3:00 PM</div>
+              </div>
+
+              <div className="font-serif text-wedding-charcoal uppercase">WHERE</div>
+              <div>
+                <div>Archeo</div>
+                <div>The Distillery Historic District</div>
+                <div>31 Trinity St, Toronto, ON M5A 3C4</div>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Archeo+31+Trinity+St+Toronto+ON+M5A+3C4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-3 px-8 py-2 border border-wedding-charcoal rounded-full text-wedding-charcoal hover:bg-wedding-charcoal hover:text-wedding-cream transition-colors duration-300 text-center"
+                >
+                  MAP
+                </a>
+              </div>
+
+              <div className="font-serif text-wedding-charcoal uppercase">ATTIRE</div>
+              <div>Cocktail or formal attire</div>
+
+              <div className="font-serif text-wedding-charcoal uppercase">DETAILS</div>
+              <div>
+                <p>We ask that guests arrive at least 15 minutes prior to the ceremony start time of 10:00 AM.</p>
+                <p className="mt-2">Reception, brunch, and dancing to follow. This venue is located in a historic district and has a strict end time of 3:00 PM.</p>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
     );
@@ -172,9 +172,9 @@ const WeddingDetails: React.FC = () => {
             <Link to="/details" className="w-full sm:w-auto">
               <Button
                 variant="outline"
-                className="w-full sm:w-auto border-2 border-wedding-charcoal text-wedding-charcoal font-serif px-12 py-6 text-lg rounded-full bg-white/90 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.1)] hover:-translate-y-1 hover:-translate-x-1 transition-all duration-300"
+                className="w-full sm:w-auto border-0 text-wedding-charcoal hover:text-wedding-charcoal/70 font-serif px-12 py-6 text-lg rounded-full bg-white hover:bg-gray-100 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.1)] hover:-translate-y-1 hover:-translate-x-1 transition-all duration-300"
               >
-                SEE EVENT DETAILS
+                EVENT DETAILS
               </Button>
             </Link>
           </div>

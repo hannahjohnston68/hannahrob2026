@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import WeddingDetails from "../components/WeddingDetails";
+import FAQ from "../components/FAQ";
 import { motion } from 'framer-motion';
 import { Train, Car, ExternalLink } from 'lucide-react';
 import { Button } from "../components/ui/button";
@@ -171,6 +172,8 @@ const Details = () => {
             </div>
           </div>
         </section>
+
+        <FAQ />
 
         <section className="py-12 px-4 sm:px-8 bg-[#415A4E] mt-8">
           <div className="max-w-6xl mx-auto relative">

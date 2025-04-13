@@ -8,9 +8,9 @@ interface ImageWithLoaderProps {
   priority?: boolean;
 }
 
-const ImageWithLoader: React.FC<ImageWithLoaderProps> = ({ 
-  src, 
-  alt, 
+const ImageWithLoader: React.FC<ImageWithLoaderProps> = ({
+  src,
+  alt,
   className,
   priority = false
 }) => {
@@ -20,11 +20,11 @@ const ImageWithLoader: React.FC<ImageWithLoaderProps> = ({
   useEffect(() => {
     const img = new Image();
     img.src = src;
-    
+
     img.onload = () => {
       setIsLoading(false);
     };
-    
+
     img.onerror = () => {
       setError(true);
       setIsLoading(false);
@@ -51,7 +51,7 @@ const ImageWithLoader: React.FC<ImageWithLoaderProps> = ({
           alt={alt}
           loading={priority ? "eager" : "lazy"}
           className={cn(
-            "w-full h-full object-cover transition-opacity duration-300",
+            "w-full h-full object-cover transition-opacity duration-300 will-change-transform",
             isLoading ? "opacity-0" : "opacity-100"
           )}
         />

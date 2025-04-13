@@ -48,10 +48,10 @@ const OurStory: React.FC = () => {
     <section id="our-story" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.7 }}
           className="text-center mb-16"
         >
           <h2 className="font-serif text-3xl md:text-4xl mb-4">Our Story</h2>

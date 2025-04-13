@@ -20,7 +20,7 @@ const weddingPartyMembers = [
     name: "Hannah with her Mom",
     role: "",
     quote: "A mother's love knows no bounds. Thank you for being my rock and my inspiration.",
-    src: "/images/family/mum.png",
+    src: "/images/family/hannah+mum.png",
   },
   {
     name: "Jim",
@@ -38,7 +38,7 @@ const weddingPartyMembers = [
     name: "Rob with Patrick",
     role: "",
     quote: "Brothers by blood, friends by choice. Thank you for all the memories and adventures.",
-    src: "/images/family/patrick.png",
+    src: "/images/family/patrick-removebg-preview.png",
   },
   {
     name: "Hannah with Charlie",
@@ -154,9 +154,9 @@ const WeddingParty = () => {
                 <Link to="/details" className="w-full sm:w-auto">
                   <Button
                     variant="outline"
-                    className="w-full sm:w-auto border-2 border-wedding-charcoal text-wedding-charcoal font-serif px-12 py-6 text-lg rounded-full bg-white/90 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.1)] hover:-translate-y-1 hover:-translate-x-1 transition-all duration-300"
+                    className="w-full sm:w-auto border-0 text-wedding-charcoal hover:text-wedding-charcoal/70 font-serif px-12 py-6 text-lg rounded-full bg-white hover:bg-gray-100 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.1)] hover:-translate-y-1 hover:-translate-x-1 transition-all duration-300"
                   >
-                    SEE EVENT DETAILS
+                    EVENT DETAILS
                   </Button>
                 </Link>
               </div>
